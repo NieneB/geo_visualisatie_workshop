@@ -13,22 +13,151 @@
 		var link = document.createElement( 'link' );
 		link.rel = 'stylesheet';
 		link.type = 'text/css';
-		link.href = window.location.search.match( /print-pdf/gi ) ? 'presentation/css/print/pdf.css' : 'presentationcss/print/paper.css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? 'presentation/css/print/pdf.css' : 'presentation/css/print/paper.css';
 		document.getElementsByTagName( 'head' )[0].appendChild( link );
 	</script>
 </head>
 <body>
 	<div class="reveal">
-		<div class="slides" >
-			<section class="openingsslide" data-background-image="presentation/img/1_openingsslide.png">
-				<h1>DataVizFest</h1>
-				<h2 style="margin: 0 0 40px 0;"></h2>
-				<blockquote>
-					<h3 style="margin: 0 0 0 0;">Niene Boeijen</h3>
-				</blockquote>
+		<div class="slides">
+			<section>
+				<section>
+					<h1>DataVizFest</h1>
+					<h2 style="margin: 0 0 40px 0;"></h2>
+					<h3 style="margin: 0 0 0 0;">by: Niene Boeijen</h3>
+				</section>
+				<section> 
+							<p>This presentation</p>
+							<h2 style="text-transform: initial;"><a href="https://github.com/NieneB/geo_visualisatie_workshop">https://github.com/NieneB/geo_visualisatie_workshop</a></h2>
+				</section>
+			</section>
+			<!-- All about me me me ! -->
+			<section>
+				<section>
+					<h1>About me</h1>
+					<div style="float:left; width:50%;"> 
+						<a href="http://webmapper.net"><img src="presentation/img/webmapper_logo_tekst.png" height="120px"> </a>
+						<a href="http://maptime.io"><img src="presentation/img/maptimeAMS.png" height="200px"></a>
+						<a href="https://waag.org/en/users/niene-boeijen"><img src="presentation/img/WS_logo.jpg" height="100px"></a>
+						<img src="presentation/img/wur.jpg" width="250px">
+					</div>
+					<div style="float:right; width: 50%;">
+						<p>Web Cartographer & Geo ICT developer</p>
+						<p>Maptime Amsterdam & Utrecht</p>
+						<p>Internship Geo Web Visualization</p>
+						<p>Msc Geo Information Science & Remote Sensing</p>
+					</div>
+				</section>
+				<section data-background="presentation/img/webmapper.gif">
+					<div style="float: right; width: 70%; background-color:rgba(255,255,255,0.8);"> 
+						<a href="http://webmapper.net"><img src="presentation/img/webmapper_logo_tekst.png" height="100px"></a>
+							<i>
+								<p>What the map can be</p>
+								<p>We make interactive maps and visualizations.</p>
+								<p>Our expertise is open {source; data; standards} </p>
+								<p>Our power lies in combining cartography with web technology.</p>
+							</i>
+							<p>Utrecht, The Netherlands</p>
+					</div>
+				</section>
+			</section>
+			<!-- WHY MAPS? -->
+			<section>
+				<section>
+					<h1><u>Geo</u> Data Visualizations</h1>
+					<h2><i>for the web</i></h2>
+					<aside class="notes">
+						Ik werk elke dag met kaarten. 
+						Doel = Jullie vandaag overtuigen dat je een kaart moet maken.
+					</aside>
+				</section>
+				<section>
+					<blockquote>
+						<p>Infomation may be infinite. The ways of organizing information are finite.</p>
+						<q>Richard Saul Wurman, 1996</q>
+					</blockquote>
+					<ul>
+						<li><b>L</b>ocation</li>
+						<li><b>A</b>lpabetical</li>
+						<li><b>T</b>ime</li>
+						<li><b>C</b>ategory</li>
+						<li><b>H</b>ierarchy</li>
+					</ul>
+					<aside class="notes">
+						Locatie is 1 van de manieren om informatie te organiseren.
+					</aside>
+				</section>
+				<section>
+					<h1>Power of Maps</h1>
+					<p> our brains Organise by location </p>
+					<i>we have no choice but to think and see spatially</i>
+					<p>maps allow us to communicate about location using a common framework. </p>
+					<aside class="notes">
+						Overleving is ruimtelijk denken. Onze hersenen werken ruimtelijk. 
+						Een mooie kaart stimuleerd daarom beide zijde van onze hersenen. Rechts voor intuity and aesthetcis, links rationeel anlytisch en ruimtelijk. 
+					</aside>
+				</section>
+				<section>
+					<img src="presentation/img/ChartGuide-Poster-30-preview.jpg"/>
+					<aside class="notes">
+						Daarom focussen wij nu op de ruimtelijke aspecten van de data. Hier wordt de kaart een beetje onder gewardeerd. We hopen jullie te laten zien wat de kracht van de kaart is en hoe je een kaart kan maken.
+						 maps allow us to communicate about location using a common framework. 
+					</aside>
+				</section>
+			</section>
+			<!-- GEO data explained -->
+			<section>
+				<section>
+					<h1>What is a Map?</h1>
+					<aside class="notes"> Hiervoor gaan we gebinnen bij het begin. Wat is geo data? Wat is er anders aan? </aside>
+				</section>
+				<section>
+					<h1>Data + Location</h1>
+					<p>Vector Raster</p>
+					<p>Point line Polygon</p>
+					<p>Attributes</p>
+				</section>
+				<section>
+					<h1>Shape of the earth?</h1>
+					<p>Geographic coordinate system</p>
+					<p>3D</p>
+				</section>
+				<section>
+					<p>projected coordinate system</p>
+					<p>2D</p>
+					<p>origin</p>
+					<p>Mathematical projection</p>
+				</section>
+				<section>
+					<p>WGS84 EPSG:4326</p>
+					<p>Web Mercator EPSG:3857</p>
+					<p>RD New EPSG:28992</p>
+				</section>
+			</section>
+			<!-- DATA EXPLORATION -->
+			<section>
+				<h1>Geo Data Exploration</h1>
 			</section>
 			<section>
-					
+				<h1>Getting my map to the web</h1>
+			</section>
+			<section>
+				<h1>Summary</h1>
+			</section>
+			<section>
+				<section>
+					<h1> More info? </h1>
+					<p> Workshop online:</p>
+					<a href="https://github.com/maptime-ams/vector-tiles-workshop/wiki">https://github.com/maptime-ams/vector-tiles-workshop/wiki</a>
+					<a href="https://github.com/maptime-ams/vector-tiles-workshop/wiki">https://github.com/maptime-ams/vector-tiles-workshop/wiki</a>
+					<p><a href="https://github.com/maptime-ams/vector-tiles-workshop/wiki/Interesting-links">List with links!</a></p>
+					<p>Feel free to contact me!</p>
+				</section>
+				<section>
+					<h1>Thank you!</h1>
+					<p>Niene Boeijen</p>
+					<p>niene@webmapper.net</p>
+				</section>
 			</section>
 		</div>
 	</div>
