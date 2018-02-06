@@ -99,7 +99,7 @@
 						<p>Tobler's first law of geography</p>
 					</blockquote>
 				</section>
-				<section>
+				<!-- <section>
 					<blockquote>
 						<p>Infomation may be infinite. The ways of organizing information are finite.</p>
 						<ul>
@@ -116,14 +116,7 @@
 					<aside class="notes">
 						Locatie is 1 van de manieren om informatie te organiseren.
 					</aside>
-				</section>
-				<section >
-					<img src="presentation/img/ChartGuide-Poster-30-preview.jpg"/>
-					<aside class="notes">
-						Daarom focussen wij nu op de ruimtelijke aspecten van de data. Hier wordt de kaart een beetje onder gewardeerd. We hopen jullie te laten zien wat de kracht van de kaart is en hoe je een kaart kan maken.
-						 maps allow us to communicate about location using a common framework. 
-					</aside>
-				</section>
+				</section> -->
 				<section>
 					<h1>Power of Maps</h1>
 					<p>Our brains organise by location </p>
@@ -134,16 +127,18 @@
 						Een mooie kaart stimuleerd daarom beide zijde van onze hersenen. Rechts voor intuity and aesthetcis, links rationeel anlytisch en ruimtelijk. 
 					</aside>
 				</section>
-				<section>
-					<h1>Power of Maps</h1>
-					<p>Maps organise complex data about the environment. </p>
-					<p>Reveal patterns and relationships.</p>
+				<section >
+					<img src="presentation/img/ChartGuide-Poster-30-preview.jpg"/>
+					<aside class="notes">
+						Daarom focussen wij nu op de ruimtelijke aspecten van de data. Hier wordt de kaart een beetje onder gewardeerd. We hopen jullie te laten zien wat de kracht van de kaart is en hoe je een kaart kan maken.
+						 maps allow us to communicate about location using a common framework. 
+					</aside>
 				</section>
 			</section>
 			<!-- GEO data explained -->
 			<section data-background="presentation/img/Screenshot4.png">
 				<section>
-					<h1>What is <p class="fragment shrink"> a Map ?</p><p class="fragment current-visible"><u>Geo</u> Data ?</p></h1>
+					<h1>What is <u>Geo</u> Data ?</h1>
 					<aside class="notes"> Hiervoor gaan we gebinnen bij het begin. Map is collection of geo data. Wat is geo data? Wat is er anders aan? </aside>
 				</section>
 				<section>
@@ -160,45 +155,51 @@
 				</section>
 				<section>
 					<h1>Maps = Collection of <u>Geo</u> data</h1>
-					<p>Maps are visualized information</p>
-					<p>Maps allow us to communicate about location using a common framework. </p>
-					<p>Store data? Framework visualize? </p>
+					<p>Maps organise complex data about the environment. </p>
+					<p>Reveal patterns and relationships.</p>
+					<p>Maps allow us to communicate about location using a <u>common framework</u></p>
 				</section>
 				<section>
 					<h1>Coordinate system</h1>	
 					<p>Communicate locations & distances on the earth's surface</p>
-					<ul>
-					<li><h4>WGS84 EPSG:4326</h4></li>
-					<li><h4>Web Mercator EPSG:3857</h4></li>
-					<li><h4>RD New EPSG:28992</h4></li>
-					</ul>
 				</section>
 				<section>
 					<h1>Shape of the earth?</h1>
 					<p>From 3D shape to 2D flat map? </p>
 					<p>The real shape of the earth is too complex to be useful as a reference for measurement.</p>
+					<p>Reference Ellipsoid</p>
 				</section>
 				<section>
 					<h1>Geographic coordinate system</h1>
 					<p>3D model</p>
 					<p>Longitude Latitude</p>
-					<p>WGS84 EPSG:4326 Lon Lat in decimal degrees</p>
+				</section>
+				<section>
+					<h1>Projected coordinate system</h1>
+					<p>Mathematical projection / translation</p>
+					<p>2D</p>
+				</section>
+				<section>
+					<h4>Geographic Coordinate System:</h4>
+					<h1>WGS84 EPSG:4326 </h1>
+					<p>Lon Lat in decimal degrees</p>
 					<p>GPS</p>
 					<p>Standard way to store most geodata for the Web</p>
 					<p>GeoJSON</p>
 					<aside class="notes">standardize the way we describe locations on a map</aside>
 				</section>
 				<section>
-					<h1>Projected coordinate system</h1>
-					<p>Mathematical projection / translation</p>
-					<p>2D</p>
+					<h4>Projected Coordinate System:</h4>
+					<h1>Spherical/Web Mercator EPSG:3857</h1>
+					<p>Square, scale not relevant, shapes important</p>
 					<a href="https://www.youtube.com/watch?v=eLqC3FNNOaI">West Wing</a>
-					<p>Spherical/Web Mercator EPSG:3857</p>
-					<p>Square</p>
+					<p><i>We store data in EPSG:4326, but display it in EPSG:3857!</i></p>
 					<aside class="notes">first introduced by Google and is used in almost 100% of web maps</aside>
 				</section>
 				<section>
+					<h4>Projected Coordinate System:</h4>
 					<h1>RD New EPSG:28992</h1>
+					<p>Netherlands!</p>
 					<img src="presentation/img/rd_new.gif"/>
 				</section>
 				<section>
@@ -206,43 +207,31 @@
 					<p>WGS84 EPSG:4326</p>
 					<h4>Projected Coordinate System:</h4>
 					<p>Web Mercator EPSG:3857</p>
-					<p><i>We store data in EPSG:4326, but display it in EPSG:3857!</i></p>
-					<br/>
 					<h4>Projected Coordinate System:</h4>
 					<p>RD New EPSG:28992</p>
-					<p>Netherlands!</p>
 					<a href="http://lyzidiamond.com/posts/4326-vs-3857">[1]</a>
 					<a href="https://alastaira.wordpress.com/2011/01/23/the-google-maps-bing-maps-spherical-mercator-projection/">[2]</a>
 				</section>
-			</section>
-			<!-- DATA EXPLORATION -->
-			<section data-background="presentation/img/Screenshot5.png">
 				<section>
-					<h1>Geo Data Exploration</h1>
-					<h1>/ Transformation</h1>
-				</section>
-				<section>
-					<img src="presentation/img/webmapping_4_steps.jpg">
-					<p>I have some data, so what now?</p>
-					<p>I want more data, where to get it?</p>
-					<p>Prepare data before putting it online?</p>
-				</section>
-				<section>
-					<h1>Desktop</h1>
-					<p>Qgis , ArcMap</p>
-					<h1>Database</h1>
-					<p>Postgis, SQL</p>
-				</section>
-				<section>
-					<h4>Transform</h4>
-					<h4>Geometry </h4>
-					<h4>Attributes </h4>
+					<img src="https://media.giphy.com/media/6KKab1ydLq1uU/giphy.gif">
 				</section>
 			</section>
 			<!-- Gettin my map to the web -->
 			<section data-background="presentation/img/Screenshot6.png">
 				<section>
 					<h1>Getting my map to the web</h1>
+				</section>
+				<section>
+					<img src="presentation/img/webmapping_4_steps.jpg">
+					<p>Online hosting</p>
+					<p>Download</p>
+					<p>Qgis , ArcMap</p>
+					<p>Postgis, SQL</p>
+				</section>
+				<section>
+					<h4>Transform</h4>
+					<h4>Geometry </h4>
+					<h4>Attributes </h4>
 				</section>
 				<section>
 					<h1>Static vs Dynamic</h1>
@@ -376,6 +365,9 @@
 				</section>
 				<section>
 					<h1>Leaflet.js Examples!</h1>
+				</section>
+				<section>
+					<h1>Projections</h1>
 				</section>
 				<section>
 					<h1>Layers!</h1>
@@ -521,7 +513,7 @@
 					<p> Workshop online:</p>
 					<a href="https://github.com/maptime-ams/vector-tiles-workshop/wiki">https://github.com/maptime-ams/vector-tiles-workshop/wiki</a>
 					<a  style=" text-transform: initial" href="https://github.com/NieneB/Webmapping_for_beginners">github.com/NieneB/webmapping_for_beginners</a>
-					<p><a href="https://github.com/maptime-ams/vector-tiles-workshop/wiki/Interesting-links">List with links!</a></p>
+					<a href="https://github.com/maptime-ams/Leaflet-D3-workshop">Workshop Maptime Leaflet D3</a>
 					<p>Feel free to contact me!</p>
 				</section>
 				<section>
