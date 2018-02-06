@@ -1,11 +1,11 @@
-## Leaflet.js
+## Interactive Web Maps with [Leaflet.js](leafletjs.com)
 
 We're going to make a map of earthquakes in the Netherlands using LeafletJS as a mapping library.
 
-- [ ] load a background map (tiles)
-- [ ] plot earthquakes over top
-- [ ] add another overlay layer (municipalities)
-- [ ] do this in several projections: EPSG:3857 and EPSG:28992
+- load a background map (tiles)
+- plot earthquakes over top
+- add another overlay layer (municipalities)
+- do this in several projections: EPSG:3857 and EPSG:28992
 
 
 The geojson and topojson files  used are available in `../data`. See the end of this file for the method used to create them.
@@ -23,6 +23,7 @@ In [01_basemap.html](01_basemap.html) is the most basic Leaflet example, showing
       
 2. create a tilelayer from a URL
 
+
     let bglayer_Positron = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
       subdomains: 'abcd',
@@ -31,11 +32,13 @@ In [01_basemap.html](01_basemap.html) is the most basic Leaflet example, showing
       
 3. add it to the map
 
+
     bglayer_Positron.addTo(map);
 
 If we want to add a basemap in a different projection, we need to let Leaflet know how to handle the different coordinate space. Luckily there is a library for that. In [02_basemap_RD.html](basemap_RD.html) we see how to do this. We define a new coordinate system for Leaflet to know where to put the map tiles and features, and initialize the map with this. The steps become:
 
 1. define our custom coordinate reference system/tilegrid
+
 
     var RD = new L.Proj.CRS( 'EPSG:28992','+proj=sterea +lat_0=52.15616055555555 +lon_0=5.38763888888889 +k=0.9999079 +x_0=155000 +y_0=463000 +ellps=bessel +units=m +towgs84=565.2369,50.0087,465.658,-0.406857330322398,0.350732676542563,-1.8703473836068,4.0812 +no_defs', {
       resolutions: [3440.640, 1720.320, 860.160, 430.080, 215.040, 107.520, 53.760, 26.880, 13.440, 6.720, 3.360, 1.680, 0.840, 0.420, 0.210],
@@ -45,12 +48,14 @@ If we want to add a basemap in a different projection, we need to let Leaflet kn
     );
     
 2. initialize the map using this CRS
-    
+
+
     let map = L.map('map-container', {
       crs: RD
     });
 
 3. create a tile layer (pointing to a tileset in RD coordinates)
+
 
     let bglayer_BRTAchtergrondkaart = new L.TileLayer('http://geodata.nationaalgeoregister.nl/tiles/service/tms/1.0.0/brtachtergrondkaartgrijs/EPSG:28992/{z}/{x}/{y}.png', {
       minZoom: 0,
@@ -60,6 +65,7 @@ If we want to add a basemap in a different projection, we need to let Leaflet kn
     });
     
 4. add it to the map.
+
 
     bglayer_BRTAchtergrondkaart.addTo(map) 
 
@@ -71,6 +77,8 @@ For this example, you will need to run a local web server if you are not already
 In [03_geojson.html](03_geojson.html) we have the same background map, but now we fetch a GeoJSON file and load it on top. 
       
 1. define how our point data will be visualized
+
+
     var geojsonMarkerOptions = {
       radius: 3,
       fillColor: "#ff7800",
@@ -81,7 +89,8 @@ In [03_geojson.html](03_geojson.html) we have the same background map, but now w
     };
 
 2. create an empty geojson layer. We will add data to it later.
-   
+
+
     var geojson = L.geoJson(null,{
       pointToLayer: function (feature, latlng) {
         return L.circleMarker(latlng, geojsonMarkerOptions);
@@ -89,7 +98,8 @@ In [03_geojson.html](03_geojson.html) we have the same background map, but now w
     }).addTo(map);
 
 3. fetch the data and add it to the map.
-   
+
+
     //define a function to get and parse geojson from URL
     async function getGeoData(url) {
       let response = await fetch(url);
@@ -103,12 +113,13 @@ In [03_geojson.html](03_geojson.html) we have the same background map, but now w
 We can also show this dataset on our map in RD. GeoJSON is _always_ in latitude/longitude, never in a projected coordinate system. Leaflet reprojects features from latitude/longitude to the coordinate reference system of the map. Since we have told Leaflet to use RD, we don't need to make any other changes to our code as you can see in [04_geojson_RD.html](04_geojson_RD.html)
 
 ### Add municipalities of the Netherlands as TopoJSON
-GeoJSON can be used for points, lines and polygons. So we can add any other dataset if we want. But GeoJSON is quite 'verbose', so file sizes increase quickly. Especially on the web, this causes performance problems. Luckily, someone (Mike Bostock, the creator of D3.js) thought of an extension to GeoJSON which can reduce filesize greatly. It works by storing the topology of the data, so that duplicate points and lines are only stored once. If we take, for example, the municipalities of the Netherlands, this means that we can cut down the size a lot since all the shared boundaries can be de-duplicated! If we add a bit of simplification, we can make spectacular gains: the GeoJSON of the Dutch municipalities is38MB; as topojson it's initially 25MB, and when we simplify it's 488 KB (!) and still of an acceptable precision for most (web) maps.
+GeoJSON can be used for points, lines and polygons. So we can add any other dataset if we want. But GeoJSON is quite 'verbose', so file sizes increase quickly. Especially on the web, this causes performance problems. Luckily, someone (Mike Bostock, the creator of D3.js) developed an extension to GeoJSON which can reduce filesize greatly. It works by storing the topology of the data, so that duplicate points and lines are only stored once. If we take, for example, the municipalities of the Netherlands, this means that we can cut down the size a lot since all the shared boundaries can be de-duplicated! If we add a bit of simplification, we can make spectacular gains: the GeoJSON of the Dutch municipalities is 38MB; as topojson it's initially 25MB, and when we simplify it's 488 KB (!) and still of an acceptable precision for most (web) maps.
 
 Leaflet can't read TopoJSON, so once the much smaller file has been transferred over the network we need to convert it  back to GeoJSON to add it to the map. What we need to do:
      
      
 1. extend Leaflet to be able to create a GeoJSON layer from a TopoJSON data object
+
 
     //copied from https://gist.github.com/brendanvinson/0e3c3c86d96863f1c33f55454705bca7. Also available as a Leaflet plugin.
     L.TopoJSON = L.GeoJSON.extend({
@@ -136,6 +147,8 @@ Leaflet can't read TopoJSON, so once the much smaller file has been transferred 
     };
       
 2. create an empty geojson layer, using the new TopoJson function instead of GeoJSON
+
+
       var geojson = L.topoJson(null, {
         style: function(feature){ //define how to style the features
           return {
@@ -150,12 +163,17 @@ Leaflet can't read TopoJSON, so once the much smaller file has been transferred 
 
 3. fetch the geojson and add it to our geojson layer
 
+
     getGeoData('/data/gemeenten_2017.topojson').then(data => geojson.addData(data));
 
 see the result in [05_topojson.html](03_topojson.html)
 
+### Adding interactivity and more
+Once you have data on your map, you can add all kinds of interactivity on events like clicks and mouseovers. You can also control the zoom and location of the map. For information, see the excellent [tutorials](http://leafletjs.com/examples.html) on Leaflet's official website.
 
-###Creating the GeoJSON and TopoJSON files
+
+
+### Creating the GeoJSON and TopoJSON files
 You will need the following software:
 
 * either gdal or qgis, which provides a GUI frontend to gdal.
@@ -166,6 +184,7 @@ You will need the following software:
 2. unzip
 3. convert the shapefile to GeoJSON. Either use ogr2ogr:
 
+
     ogr2ogr -f geojson -t_srs EPSG:4326 -s_srs EPSG:28992 -sql "select GM_CODE, GM_NAAM, STED, AANT_INW, BEV_DICHTH from gem_2017 where WATER='NEE'" -lco COORDINATE_PRECISION=6 gemeenten_2017.geojson gem_2017.shp
 
 This transforms geometry to lat/lon (EPSG:4326) and selects only a few of the many attributes present in the original dataset, in order to reduce the size of the geojson file somewhat.
@@ -174,5 +193,8 @@ Or use Qgis: load the shapefile, then right-click it in the layer list and selec
 
 4. convert the geojson to topojson to drastically reduce network transfer size. Also simplify the topojson a little.
 
+
     geo2topo  gemeenten_2017.geojson -o ~/wm/prj/geo_visualisatie_workshop/data/gemeenten_2017.topojson.temp
     toposimplify gemeenten_20172.topojson.temp -P 0.01 -o gemeenten_2017.topojson
+
+
