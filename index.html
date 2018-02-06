@@ -30,12 +30,14 @@
 					<p>This presentation and materials:</p>
 					<h2 style="text-transform: initial;"><a href="github.com/NieneB/geo_visualisatie_workshop">https://github.com/NieneB/geo_visualisatie_workshop</a></h2>
 				</section>
-			</section>
+			</section >
 			<!-- All about me me me ! -->
-			<section>
+			<section data-background="presentation/img/screenshot_background.png">
 				<section>
 					<h1>About me</h1>
-					<div style="float:left; width:50%;"> 
+				</section>
+				<section>
+					<div style="float:right; width:50%;"> 
 						<a href="http://webmapper.net"><img src="presentation/img/webmapper_logo_tekst.png" height="100px"> </a>
 						<br/>
 						<a href="http://maptime.io"><img src="presentation/img/maptimeAMS.png" height="130px"></a>
@@ -45,7 +47,7 @@
 						<br/>
 						<img src="presentation/img/wur.jpg" height="50px">
 					</div>
-					<div style="float:right; width: 50%;">
+					<div style="float:left; width: 50%;">
 						<p>Web Cartographer & Geo ICT developer</p>
 						<br/>
 						<p> Event Organizer: Maptime <a href="https://www.meetup.com/Maptime-AMS">Amsterdam</a> & <a href="https://www.meetup.com/Maptime030-Utrecht/">Utrecht</a></p>
@@ -137,10 +139,9 @@
 					<p>Maps organise complex data about the environment. </p>
 					<p>Reveal patterns and relationships.</p>
 				</section>
-				
 			</section>
 			<!-- GEO data explained -->
-			<section data-background="presentation/img/Screenshot5.png">
+			<section data-background="presentation/img/Screenshot4.png">
 				<section>
 					<h1>What is <p class="fragment shrink"> a Map ?</p><p class="fragment current-visible"><u>Geo</u> Data ?</p></h1>
 					<aside class="notes"> Hiervoor gaan we gebinnen bij het begin. Map is collection of geo data. Wat is geo data? Wat is er anders aan? </aside>
@@ -215,7 +216,7 @@
 				</section>
 			</section>
 			<!-- DATA EXPLORATION -->
-			<section data-background="presentation/img/Screenshot6.png">
+			<section data-background="presentation/img/Screenshot5.png">
 				<section>
 					<h1>Geo Data Exploration</h1>
 					<h1>/ Transformation</h1>
@@ -238,7 +239,8 @@
 					<h4>Attributes </h4>
 				</section>
 			</section>
-			<section data-background="presentation/img/Screenshot4.png">
+			<!-- Gettin my map to the web -->
+			<section data-background="presentation/img/Screenshot6.png">
 				<section>
 					<h1>Getting my map to the web</h1>
 				</section>
@@ -260,12 +262,45 @@
 				</section>
 				<section>
 					<h1>Static: D3.js</h1>
+					<p>Interactive</p>
+					<p>Graphic</p>
 					<p>More about coordinate systems and projections</p>
 				</section>
 				<section>
 					<h1>Interactive: Leaflet.js</h1>
-					<p>Tiled Web Map? </p>
-					<p>What is a web map?</p>
+					<p>Tiled Web Map</p>
+					<p>Static Background. Raster based</p>
+					<p>Interactive layers</p>
+				</section>
+				<section>
+					<h1>Interactive: MapboxGL.js</h1>
+					<p>Customized Background map </p>
+					<p>Interactive Data</p>
+					<p>Vector based</p>
+					<p>WebGL rendering!</p>
+				</section>
+			</section>
+			<!-- D3.js -->
+			<section data-background="presentation/img/Screenshot_background2.png">
+				<section>
+					<h1>D3.js</h1>
+				</section>
+				<section>
+					<h1>bla</h1>
+				</section>
+				<section>
+						<h1>D3 is NOT</h1>
+						<p>a slippy map creator</p>
+						<p> Not based on tiles!!</p>
+						<h2 class="fragment fade-in">Mostly used for:</h2>
+						<p class="fragment fade-in">Charts (pie, line), Tables, Maps, Networks, animation & interactivity</p>
+					</section>
+			</section>
+			<!-- Leaflet.js -->
+			<section data-background="presentation/img/Screenshot6.png">
+				<section>
+					<h1>Leaflet.js</h1>
+					<p>Interactive Web Maps</p>
 				</section>
 				<section>
 					<h1>a little History</h1>
@@ -283,13 +318,16 @@
 					<p> The solution?</p>
 					<h1 class="fragment grow">Tiles! </h1>
 				</section>
-				<section data-background="presentation/img/tiles-loading.gif">
+				<section>
 					<h1>Tiles</h1>
+					<div style="float:left; width:50%;">
 					<p>All tiles size 256x256 pixels </p>
 					<p>Placed in a grid, sharing boundaries </p>
 					<p> Seamless map </p>
 					<p class="fragment grow">All these little tiles load way faster than one big map!</p>
 					<p>We call this slippy maps</p>
+				</div>
+				<div style="float:right; width:50%;">  <img src="presentation/img/tiles-loading.gif"></div>
 				</section>
 				<section >
 					<h1>Zoom levels</h1>
@@ -367,11 +405,102 @@
 						<img src="presentation/img/tile_creation.png" >
 					</div>
 				</section>
+			</section>
+			<!-- Vector Tiles -->
+			<section data-background="presentation/img/Screenshot5.png">
 				<section>
 					<h1>Vector tiles!</h1>
+					<p>Mapbox GL.js</p>
+				</section>
+				<section>
+					<h1>From Raster to Vector</h1>
+					<img src="presentation/img/map-tiles-2-w800.png"/>
+				</section>
+				<section data-background="https://mapzen.com/resources/projects/vector-tiles/square-of-math.gif" data-background-size='90%' >
+					<div class="fragment fade-in" 	style="background-color:rgba(255,255,255,0.8); float:right"> <p> No colours</p>
+						<p> Arrays in a 256 x 256 matrix</p>
+						<p> Same tiling schema as Raster png tiles.</p>
+						<p> Binary format</p>
+						<p> Simplifies geometries</p>
+					</div>
+				</section>
+				<section>
+                    <h1>Disadvantages Raster Tiles</h1>
+                    <p>No interaction with objects</p>
+                    <p>No information available about objects</p>
+                    <p>Multiple visualizations = multiple tile sets</p>
+				</section>
+				<section>
+					<h1>Advantages Vector tiles</h1>
+					<p> Rendering is done on client side not by the server</p>
+					<p> So different clients can style a map different</p>
+					<p> Small tile size. So faster data transfer. </p>
+					<p> High resolution.</p>
+					<p> Direct access to feature information.</p>
+				</section>
+				<section>
+					<h1>Standards</h1>
+					<a href="https://www.mapbox.com/vector-tiles/specification/">Mapbox Vector Tile Standard. </a>
+					<p>Based on the binary protocal buffer (.pbf) from Google.</p>
+					<p><a href="https://www.mapbox.com/blog/vector-tile-adoption/">Standard already used by Esri.</a></p>
+					<p>Web Mercator projection, Google tiling scheme.</p>
+					<h1>Formats</h1>
+					<p>.mvt - .pbf</p>
+					<p>.mbtiles</p>
+				</section>
+				<section>
+					<h1>Where to get them?</h1>
+					<h3>Download</h3>
+					<p> <a href="http://osm2vectortiles.org/">osm2vectortiles</a></p>
+					<p><a href="https://openmaptiles.org/">https://openmaptiles.org/</a></p>
+					<p>Make with Mapbox Studio</p>
+					<h3>Hosted</h3>
+					<p>Mapzen</p>
+					<pre><code>https://tile.mapzen.com/mapzen/vector/v1/{layers}/{z}/{x}/{y}.{format}</code></pre>
+					<a href="https://openmaptiles.com/hosting/">https://openmaptiles.com/hosting/</a>
+					<p><a href="https://developer.mapquest.com/documentation/">Mapquest</a></p>
+					<p>Licences..</p>
+				</section>
+				<section data-background="http://erictheise.com/geostack-deck/images/Map-nik-cake-osm-7.png">
+					<h1>Bake them your self</h1>
+					<div style="background-color:rgba(255,255,255,0.8)">
+						<p><a href="http://tegola.io/">Tegola </a></p>
+						<p><a href="https://github.com/mapbox/tippecanoe">TippeCanoe</a></p>
+						<p><a href="http://docs.geoserver.org/latest/en/user/extensions/vectortiles/tutorial.html">GeoServer </a></p> 
+						<p> <a href="https://github.com/pka/t-rex">T-rex</a></p>
+						<p><a href="https://github.com/mapbox/awesome-vector-tiles">More </a> command line tools</p>
+					</div>
+				</section>
+				<section data-background="img/amsterdam.png">
+					<h3>Host yourself?</h3>
+					<p>Use locally offline</p>
+					<p><a href="http://docs.geoserver.org/latest/en/user/extensions/vectortiles/tutorial.html">GeoServer </a></p>
+					<p><a href="http://tegola.io/">Tegola </a></p>
+					<p> Tile servers</p>
+					<h3> The Netherlands!</h3>
+					<p> NL Amsterdam Datalab.</p>
+					<pre><code data-trim data-noescape>"https://t1.data.amsterdam.nl/wm/{z}/{x}/{y}.pbf"</code></pre>
+					<p> Soon PDOK/Kadaster?...BRT of the Netherlands! </p>
+				</section>
+				<section>
+					<h1>How to visualize them?</h1>	
+					<p><a href="https://openlayers.org/en/latest/examples/osm-vector-tiles.html">OpenLayers</a> -- <a href="http://leafletjs.com/plugins.html#vector-tiles">Leaflet</a></p>
+					<p><a href="https://www.mapbox.com/mapbox-gl-js/api/">MapboxGL</a></p>
+					<p><a href="https://d3js.org/">D3.js</a></p>
+					<p><a href="http://maputnik.com/">Maputnik</a></p>
+					<p>Mapbox studio</p>
+					<p>JavaScript</p>
+				</section>
+				<section>
+					<h1>Let's code!</h1>
+					<p>Mapbox GL.js example</p>
+					<p>WGS84 data only.. </p>
+					<p>PDOK vector tiles</p>
+					<p>GeoJSON data earthquakes</p>
 				</section>
 			</section>
-			<section>
+			<!-- Summary -->
+			<section data-background="presentation/img/Screenshot4.png">
 				<section>
 					<h1>Summary</h1>
 				</section>
@@ -385,12 +514,13 @@
 					<p><a href="https://developer.here.com/develop/javascript-api">HERE Maps</a></p>
 				</section>
 			</section>
-			<section>
+			<!-- Wrap up -->
+			<section data-background="presentation/img/Screenshot_background3.png">
 				<section>
 					<h1> More info? </h1>
 					<p> Workshop online:</p>
 					<a href="https://github.com/maptime-ams/vector-tiles-workshop/wiki">https://github.com/maptime-ams/vector-tiles-workshop/wiki</a>
-					<a href="https://github.com/maptime-ams/vector-tiles-workshop/wiki">https://github.com/maptime-ams/vector-tiles-workshop/wiki</a>
+					<a  style=" text-transform: initial" href="https://github.com/NieneB/Webmapping_for_beginners">github.com/NieneB/webmapping_for_beginners</a>
 					<p><a href="https://github.com/maptime-ams/vector-tiles-workshop/wiki/Interesting-links">List with links!</a></p>
 					<p>Feel free to contact me!</p>
 				</section>
