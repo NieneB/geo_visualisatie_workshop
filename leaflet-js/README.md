@@ -7,6 +7,15 @@ We're going to make a map of earthquakes in the Netherlands using LeafletJS as a
 - add another overlay layer (municipalities)
 - do this in several projections: EPSG:3857 and EPSG:28992
 
+### How to run
+
+Clone this repository from Github: `git clone https://github.com/NieneB/geo_visualisatie_workshop`
+
+Some of these examples can be viewed by simply opening the file in your web browser. But for some a proper web server is required. The two simplest options are:
+
+1. if you have Python installed, you can run `python -m SimpleHTTPServer` from the root of the repository. Then browse to the address it provides and add the name of the file you want to see, e.g. `http://localhost:8000/leaflet-js/01_basemap.html`
+2. if you have NodeJS installed, you can run the `live-server` module which also has live-reload capabilities: it will refresh your browser when you make changes. Install it with `npm install -g live-server` and run it with `live-server` in the project root. Then you can open `http://localhost:8080/leaflet-js/01_basemap.html` in your browser, for example.
+
 
 The geojson and topojson files  used are available in `../data`. See the end of this file for the method used to create them.
 
