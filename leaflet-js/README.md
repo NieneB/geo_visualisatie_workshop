@@ -76,6 +76,7 @@ let map = L.map('map-container', {
 3. create a tile layer (pointing to a tileset in RD coordinates)
 
 
+```javascript
 let bglayer_BRTAchtergrondkaart = new L.TileLayer('http://geodata.nationaalgeoregister.nl/tiles/service/tms/1.0.0/brtachtergrondkaartgrijs/EPSG:28992/{z}/{x}/{y}.png', {
   minZoom: 0,
   maxZoom: 13,
@@ -85,7 +86,6 @@ let bglayer_BRTAchtergrondkaart = new L.TileLayer('http://geodata.nationaalgeore
 ```
     
 4. add it to the map.
-
 
 ```javascript
 bglayer_BRTAchtergrondkaart.addTo(map) 
@@ -244,8 +244,9 @@ You will need the following software:
 2. unzip
 3. convert the shapefile to GeoJSON. Either use ogr2ogr:
 
-
-    ogr2ogr -f geojson -t_srs EPSG:4326 -s_srs EPSG:28992 -sql "select GM_CODE, GM_NAAM, STED, AANT_INW, BEV_DICHTH from gem_2017 where WATER='NEE'" -lco COORDINATE_PRECISION=6 gemeenten_2017.geojson gem_2017.shp
+```bash
+ogr2ogr -f geojson -t_srs EPSG:4326 -s_srs EPSG:28992 -sql "select GM_CODE, GM_NAAM, STED, AANT_INW, BEV_DICHTH from gem_2017 where WATER='NEE'" -lco COORDINATE_PRECISION=6 gemeenten_2017.geojson gem_2017.shp
+```
 
 This transforms geometry to lat/lon (EPSG:4326) and selects only a few of the many attributes present in the original dataset, in order to reduce the size of the geojson file somewhat.
 
@@ -254,7 +255,9 @@ Or use Qgis: load the shapefile, then right-click it in the layer list and selec
 4. convert the geojson to topojson to drastically reduce network transfer size. Also simplify the topojson a little.
 
 
-    geo2topo  gemeenten_2017.geojson -o ~/wm/prj/geo_visualisatie_workshop/data/gemeenten_2017.topojson.temp
-    toposimplify gemeenten_20172.topojson.temp -P 0.01 -o gemeenten_2017.topojson
+```bash
+geo2topo  gemeenten_2017.geojson -o ~/wm/prj/geo_visualisatie_workshop/data/gemeenten_2017.topojson.temp
+toposimplify gemeenten_20172.topojson.temp -P 0.01 -o gemeenten_2017.topojson
+```
 
 
