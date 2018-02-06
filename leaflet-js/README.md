@@ -69,12 +69,34 @@ If we want to add a basemap in a different projection, we need to let Leaflet kn
 
     bglayer_BRTAchtergrondkaart.addTo(map) 
 
+### Add another overlay from a WMS
+The tiled layer sources we added above are an efficient way to serve raster maps. Another way is to have the client send the bounding box it wants to see, and have that image be generated on the fly server-side, and sent back. This is called a WMS (Web Map Service). Every time the map moves, a new image needs to be generated and sent. It's a tradeoff between rendering speed, server storage size, and other performance factors.
+
+The Dutch government offers many datasets as WMS services via https://nationaalgeoregister.nl. Most of these are in the RD projection. Now we have a Leaflet map in RD, we can easily add these layers.
+
+1. we need a Leaflet plugin to handle WMS sources:
+
+
+    <script src="https://cdn.rawgit.com/heigeo/leaflet.wms/gh-pages/dist/leaflet.wms.js"></script>
+
+2. Then to add a new layer we do the following:
+
+
+      var cbs_cars = L.WMS.overlay('http://geodata.nationaalgeoregister.nl/wijkenbuurten2014/wms', {
+          'layers': 'cbs_buurten_2014',
+          'styles': 'wijkenbuurten_thema_buurten_gemeentewijkbuurt_gemiddeld_aantal_autos_per_huishouden',
+          'srs': 'EPSG:28992',
+          'format': 'image/png'
+      }).addTo(map);
+
+See the result in [03_wms_RD.html](03_wms_RD.html)
+
 ### Add earthquake locations as GeoJSON
 Map tiles are 'static': they are pre-generated and stored on the server. Their advantage is that they are fast to serve, but they are not so suitable for quickly changing data or if we want to add a lot of interaction to our data. For this we can use vector data. The most prevalent format on the Web is GeoJSON. Let's add a dataset in GeoJSON to our map.
 
 For this example, you will need to run a local web server if you are not already doing so: see above.
 
-In [03_geojson.html](03_geojson.html) we have the same background map, but now we fetch a GeoJSON file and load it on top. 
+In [04_geojson.html](04_geojson.html) we have the same background map, but now we fetch a GeoJSON file and load it on top. 
       
 1. define how our point data will be visualized
 
@@ -110,7 +132,7 @@ In [03_geojson.html](03_geojson.html) we have the same background map, but now w
     //fetch the geojson and add it to our geojson layer
     getGeoData('/data/aardbevingen_NL.geojson').then(data => geojson.addData(data));
 
-We can also show this dataset on our map in RD. GeoJSON is _always_ in latitude/longitude, never in a projected coordinate system. Leaflet reprojects features from latitude/longitude to the coordinate reference system of the map. Since we have told Leaflet to use RD, we don't need to make any other changes to our code as you can see in [04_geojson_RD.html](04_geojson_RD.html)
+We can also show this dataset on our map in RD. GeoJSON is _always_ in latitude/longitude, never in a projected coordinate system. Leaflet reprojects features from latitude/longitude to the coordinate reference system of the map. Since we have told Leaflet to use RD, we don't need to make any other changes to our code as you can see in [05_geojson_RD.html](05_geojson_RD.html)
 
 ### Add municipalities of the Netherlands as TopoJSON
 GeoJSON can be used for points, lines and polygons. So we can add any other dataset if we want. But GeoJSON is quite 'verbose', so file sizes increase quickly. Especially on the web, this causes performance problems. Luckily, someone (Mike Bostock, the creator of D3.js) developed an extension to GeoJSON which can reduce filesize greatly. It works by storing the topology of the data, so that duplicate points and lines are only stored once. If we take, for example, the municipalities of the Netherlands, this means that we can cut down the size a lot since all the shared boundaries can be de-duplicated! If we add a bit of simplification, we can make spectacular gains: the GeoJSON of the Dutch municipalities is 38MB; as topojson it's initially 25MB, and when we simplify it's 488 KB (!) and still of an acceptable precision for most (web) maps.
@@ -166,7 +188,7 @@ Leaflet can't read TopoJSON, so once the much smaller file has been transferred 
 
     getGeoData('/data/gemeenten_2017.topojson').then(data => geojson.addData(data));
 
-see the result in [05_topojson.html](03_topojson.html)
+see the result in [06_topojson.html](06_topojson.html)
 
 ### Adding interactivity and more
 Once you have data on your map, you can add all kinds of interactivity on events like clicks and mouseovers. You can also control the zoom and location of the map. For information, see the excellent [tutorials](http://leafletjs.com/examples.html) on Leaflet's official website.
