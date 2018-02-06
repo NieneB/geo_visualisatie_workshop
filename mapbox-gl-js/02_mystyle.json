@@ -1,0 +1,32 @@
+{
+    "version": 8,
+    "name": "aardbeving",
+    "sources": {
+           "pdok":{
+                "type": "vector",
+                "tiles":  ["http://geodata.nationaalgeoregister.nl/beta/topotiles/{z}/{x}/{y}.pbf"]
+           }
+    },
+    "layers":[ 
+        { 
+            "id":  "background",
+            "type": "background",
+            "paint": {
+                "background-color":"#FFFFFF"
+                }
+        },
+        {
+            "id": "admin",
+            "type": "fill",
+            "source": "pdok",
+            "source-layer": "admin",
+            "maxzoom": 22,
+            "minzoom": 0,
+            "filter": ["==", "lod1", "province"],
+            "paint": {
+                "fill-color" :"#54D8CC",
+                "fill-outline-color": "#ffffff"
+            }
+        }
+    ]
+}
