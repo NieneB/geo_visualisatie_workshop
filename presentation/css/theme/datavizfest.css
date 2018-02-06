@@ -275,11 +275,13 @@ body {
 .reveal a img {
   -webkit-transition: all .15s linear;
   -moz-transition: all .15s linear;
-  transition: all .15s linear; }
+  transition: all .15s linear;
+  box-shadow: 4px 4px 5px 3px rgba(255,165,43,0.3);  
+} 
 
 .reveal a:hover img {
   background: rgba(255, 255, 255, 0.2);
-  border-color: #e9f5dd;
+  border-color: #f3ec9c;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.55); }
 
 /*********************************************
