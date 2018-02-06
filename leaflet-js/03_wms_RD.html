@@ -60,32 +60,6 @@
         attribution: 'Map data: <a href="http://www.kadaster.nl">Kadaster</a>'
       });
       bglayer_BRTAchtergrondkaart.addTo(map) 
-      //define how our point data will be visualized
-      var geojsonMarkerOptions = {
-        radius: 3,
-        fillColor: "#ff7800",
-        color: "#000",
-        weight: 1,
-        opacity: 1,
-        fillOpacity: 0.8
-      };
-
-      //create an empty geojson layer
-      var geojson = L.geoJson(null,{
-        pointToLayer: function (feature, latlng) {
-          return L.circleMarker(latlng, geojsonMarkerOptions);
-        }
-      }).addTo(map);
-
-      //define a function to get and parse geojson from URL
-      async function getGeoData(url) {
-        let response = await fetch(url);
-        let data = await response.json();
-        return data;
-      }
-      
-      //fetch the geojson and add it to our geojson layer
-      getGeoData('/data/aardbevingen_NL.geojson').then(data => geojson.addData(data));
 
       var cbs_cars = L.WMS.overlay('http://geodata.nationaalgeoregister.nl/wijkenbuurten2014/wms', {
           'layers': 'cbs_buurten_2014',
