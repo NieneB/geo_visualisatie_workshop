@@ -21,6 +21,8 @@ https://nieneb.github.io/geo_visualisatie_workshop/
 
 # Leaflet.js
 
+see [leaflet-js/README.md](leaflet-js/README.md)
+
 - Webmap / slippy maps
 - adding WMS
 - adding GeoJSON/TopoJSON
