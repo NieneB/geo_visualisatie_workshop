@@ -1,4 +1,4 @@
-## Interactive Web Maps with [Leaflet.js](leafletjs.com)
+## Interactive Web Maps with [Leaflet.js](https://leafletjs.com)
 
 We're going to make a map of earthquakes in the Netherlands using LeafletJS as a mapping library.
 
@@ -120,7 +120,7 @@ Leaflet can't read TopoJSON, so once the much smaller file has been transferred 
      
 1. extend Leaflet to be able to create a GeoJSON layer from a TopoJSON data object
 
-
+ 
     //copied from https://gist.github.com/brendanvinson/0e3c3c86d96863f1c33f55454705bca7. Also available as a Leaflet plugin.
     L.TopoJSON = L.GeoJSON.extend({
       addData: function (data) {
