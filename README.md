@@ -21,6 +21,8 @@ https://nieneb.github.io/geo_visualisatie_workshop/
 
 # Leaflet.js
 
+see [leaflet-js/README.md](leaflet-js/README.md)
+
 - Webmap / slippy maps
 - adding WMS
 - adding GeoJSON/TopoJSON
@@ -41,3 +43,13 @@ https://nieneb.github.io/geo_visualisatie_workshop/
 - Animations
 - extrusions
 
+
+# Data voorbereiden
+Input tsv zit in `data/`. Converteer naar geojson met:
+
+    ogr2ogr -f geojson data/aardbevingen_NL.geojson CSV:data/2017_06_Aardbeving_NL.txt -oo X_POSSIBLE_NAMES=LON -oo Y_POSSIBLE_NAMES=LAT -oo KEEP_GEOM_COLUMNS=NO    
+
+Converteer naar topojson met:
+
+    npm install -g topojson
+    geo2topo data/aardbevingen_NL.geojson > data/aardbevingen_NL.topojson
