@@ -1,18 +1,23 @@
 ## Data preprocessing
 
+## Data Transformation
+The input data is a .txt file with point coordinates. We need to convert this to a `GeoJSON` file in order to plot it over our maps. We can do this with Qgis or  `ogr2ogr`
 
-# Data voorbereiden
-Input tsv zit in `data/`. Converteer naar geojson met:
 
     ogr2ogr -f geojson data/aardbevingen_NL.geojson CSV:data/2017_06_Aardbeving_NL.txt -oo X_POSSIBLE_NAMES=LON -oo Y_POSSIBLE_NAMES=LAT -oo KEEP_GEOM_COLUMNS=NO    
 
-Converteer naar topojson met:
+To convert to topojson:
 
     npm install -g topojson
     geo2topo data/aardbevingen_NL.geojson > data/aardbevingen_NL.topojson
 
+In Qgis:
 
-### Creating the GeoJSON and TopoJSON files
+Add a Delimeted Text File into QGIS. Set point coordinates for the geometry definition. Set comma as seperator, or change all comma's to points. Set Layer CRS to WGS84, EPSG:4326.
+
+Save as GeoJSON. COORDINATE PRECISION: 6
+
+## Creating the GeoJSON and TopoJSON files
 You will need the following software:
 
 * either gdal or qgis, which provides a GUI frontend to gdal.
