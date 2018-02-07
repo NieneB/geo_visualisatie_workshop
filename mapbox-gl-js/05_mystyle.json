@@ -103,10 +103,10 @@
             "type": "symbol",
             "source": "aardbeving_points",
             "maxzoom": 20,
-            "minzoom": 8,
+            "minzoom": 12,
             "layout": {
                 "symbol-placement": "point",
-                "text-field":"{LOCATION}",
+                "text-field":"{DEPTH}",
                 "text-font": ["Open Sans Regular"],
                 "text-size": 12,
                 "text-anchor": "center",

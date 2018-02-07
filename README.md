@@ -1,16 +1,13 @@
-## Geo Visualisaties voor het Web
-#### Door: Niene Boeijen, Webmapper
+# **Geo** Visualisaties voor het Web
+#### By: Niene Boeijen, Webmapper
 
-Workshop voor DataViz Festival 8-2-2017
-
-https://www.vizualism.com/festival/
+Workshop for DataViz Festival 8-2-2017 > https://www.vizualism.com/festival/
 
 # Presentation
 
 The presentation can be found here: https://nieneb.github.io/geo_visualisatie_workshop/
 
 # Workshop
-
 
 ### How to run
 
@@ -23,7 +20,7 @@ Some of these examples can be viewed by simply opening the file in your web brow
 
 ### Data
 
-The geojson and topojson files used are available in `../data`. See [data/README.md](data/README.md) for the methods used to create them. The data preparation has already be done for you.
+The geoJSON and topoJSON files used are available in `/data`. See [data/README.md](data/README.md) for the methods used to create them. The data preparation has already be done for you.
 
 # D3.js
 
