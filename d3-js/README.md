@@ -85,7 +85,7 @@ D3JS can't read TopoJSON, so once the much smaller file has been transferred ove
   .text(function(d) { return d.properties.name});
 ```
 
-In the process of converting GeoJSON to TopoJSON we have:
+In the [process](../data/Makefile) of converting GeoJSON to TopoJSON we have:
 
 * upgraded and sanitised the property `statcode` (string) to the feature `id` (integer) and;
 * renamed the property `statnaam` to the property `name`;
