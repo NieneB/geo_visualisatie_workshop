@@ -126,7 +126,7 @@ Once we have drawn the Dutch municipalities, we'd like to show the earthquakes a
 
 [04_visualisation.html](04_visualisation.html)
 
-Although, we have plotted the data, we cannot yet make much sense of it. Visualising the data allows us to group observations and reveal spatial patterns on the map.
+Although we have plotted the data, we cannot yet make much sense of it. Visualising the data allows us to group observations and reveal spatial patterns on the map.
 
 1. Categorize the data: tectonic or induced earthquakes (nominal)
 
@@ -166,3 +166,37 @@ Although, we have plotted the data, we cannot yet make much sense of it. Visuali
 ## 5. Add a base map for context
 
 [06_basemap.html](06_basemap.html)
+
+Did we just tell you D3.js is all about vector data and there are no map tiles involved? Actually, you can pull in raster tiles. They're great to give your map some geographic context! It's not part of D3.js minified library.
+
+1. Include the tile reader
+
+```html
+  <script src="https://d3js.org/d3-tile.v0.0.min.js"></script>
+```
+
+2. Project the tiles
+
+```javascript
+  let tau = 2 * Math.PI;
+  let tiles = d3.tile()
+    .size([width, height])
+    .scale(projection.scale() * tau)
+    .translate(projection([0, 0]))
+    ();
+```
+
+3. Add the tiles to the map
+
+```javascript
+  svg.selectAll("image")
+    .data(tiles)
+    .enter().append("image")
+    .attr("xlink:href", function(d) { return "https://geodata.nationaalgeoregister.nl/tiles/service/wmts/brtachtergrondkaartgrijs/EPSG:3857/" + d[2] + "/" + d[0] + "/" + d[1] + ".png"; })
+    .attr("x", function(d) { return (d[0] + tiles.translate[0]) * tiles.scale; })
+    .attr("y", function(d) { return (d[1] + tiles.translate[1]) * tiles.scale; })
+    .attr("width", tiles.scale)
+    .attr("height", tiles.scale);
+```
+
+*Note: we're using tiles from the Dutch [PDOK](http://www.pdok.nl) service.*

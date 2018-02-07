@@ -74,14 +74,13 @@
                       ();
 
                 svg.selectAll("image")
-                      .data(tiles)
-                      .enter().append("image")
-                      .attr("xlink:href", function(d) { return "https://geodata.nationaalgeoregister.nl/tiles/service/wmts/brtachtergrondkaartgrijs/EPSG:3857/" + d[2] + "/" + d[0] + "/" + d[1] + ".png"; })
-                      .attr("x", function(d) { return (d[0] + tiles.translate[0]) * tiles.scale; })
-                      .attr("y", function(d) { return (d[1] + tiles.translate[1]) * tiles.scale; })
-                      .attr("width", tiles.scale)
-                      .attr("height", tiles.scale);
-
+                    .data(tiles)
+                    .enter().append("image")
+                    .attr("xlink:href", function(d) { return "https://geodata.nationaalgeoregister.nl/tiles/service/wmts/brtachtergrondkaartgrijs/EPSG:3857/" + d[2] + "/" + d[0] + "/" + d[1] + ".png"; })
+                    .attr("x", function(d) { return (d[0] + tiles.translate[0]) * tiles.scale; })
+                    .attr("y", function(d) { return (d[1] + tiles.translate[1]) * tiles.scale; })
+                    .attr("width", tiles.scale)
+                    .attr("height", tiles.scale);
 
                 svg.append("g")
                     .selectAll("path")
