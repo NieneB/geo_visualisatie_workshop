@@ -315,7 +315,7 @@
 					<p>Interactive Web Maps</p>
 					<iframe src="leaflet-js/04_geojson.html" style="width:100%; height:400px;"> </iframe> 
 				</section>
-				<section>
+				<!-- <section>
 					<h1>a little History</h1>
 					<div style="float:left; width:50%"> 
 					<p>Digital maps</p>
@@ -323,11 +323,11 @@
 					<p>GIS on the Web is not user friendly.. </p>
 					<p>1996 Mapquest first with a web service! </p></div>
 					<img src="presentation/img/mapquest.jpeg" style="float:right; width:50%">
-				</section>
+				</section> -->
 				<section>
-					<h4>But really slow to load..</h4>
-					<p>in 2004 Endoxon found a way for quick online mapping! <a href="http://map.search.ch">map.search.ch</a></p>
-					<p>2005 Google Maps took over!</p>
+					<h4>One big image is really slow to load..</h4>
+<!-- 					<p>in 2004 Endoxon found a way for quick online mapping! <a href="http://map.search.ch">map.search.ch</a></p>
+					<p>2005 Google Maps took over!</p> -->
 					<p> The solution?</p>
 					<h1 class="fragment grow">Tiles! </h1>
 				</section>
@@ -367,6 +367,20 @@
 					<img src="presentation/img/tiles.gif">
 					</div>
 				</section>
+					<section>
+					<h2>Web Map Building blocks</h2>
+					<div style="float: left; width: 50%">
+							<p>Lot's of GeoData</p>
+							<p>Styled
+							<p>Rendered Cached Served </p>
+							<p><b>Base Layer</b></p>
+							<p>Interface and Interaction</p>
+							<p><i>Zoom, panning, clicking etc. </i></p>
+					</div>
+					<div style="float: left; width: 50%">
+						<img src="presentation/img/tile_creation.png" >
+					</div>
+				</section>
 				<section>
 					<h1>Leaflet.js</h1>
 					<a href="http://leafletjs.com"><img src="presentation/img/leaflet-logo.png"></a>
@@ -394,9 +408,9 @@
 				</section>
 				<section>
 					<h1>Projections in Leaflet</h1>
-					<a href="http://bl.ocks.org/hpfast/3504bcdd15dc7de76a9b1b5fbec2eac9">Base map in RDnew</a>
-					<a href="https://kartena.github.io/Proj4Leaflet/">Proj4Leaflet</a>
-					<a href="http://proj4js.org/">Proj4js</a>
+					<p><a href="http://bl.ocks.org/hpfast/3504bcdd15dc7de76a9b1b5fbec2eac9">Base map in RDnew</a></p>
+					<p><a href="https://kartena.github.io/Proj4Leaflet/">Proj4Leaflet</a></p>
+					<p><a href="http://proj4js.org/">Proj4js</a></p>
 				</section>
 				<section>
 					<h1>Layers</h1>
@@ -412,21 +426,6 @@
 					<img src="presentation/img/vector_types.png" width="500px">
 					</div>
 				</section>
-				<section>
-					<h1>Summary Leaflet.js</h1>
-					<h2>Web Map Building blocks</h2>
-					<div style="float: left; width: 50%">
-							<p>Data, styled, tiles, server:</p>
-							<p><b>Base Layer</b></p>
-							<p>Additional Data:</p>
-							<p><b>Vector Layers</b></p>
-							<p>Interface and Interaction</p>
-							<p><i>Zoom, panning, clicking etc. </i></p>
-					</div>
-					<div style="float: left; width: 50%">
-						<img src="presentation/img/tile_creation.png" >
-					</div>
-				</section>
 			</section>
 			<!-- Vector Tiles -->
 			<section data-background="presentation/img/Screenshot5.png">
@@ -438,8 +437,13 @@
 					<h1>From Raster to Vector</h1>
 					<img src="presentation/img/map-tiles-2-w800.png"/>
 				</section>
-				<section data-background="https://mapzen.com/resources/projects/vector-tiles/square-of-math.gif" data-background-size='90%' >
-					<div class="fragment fade-in" 	style="background-color:rgba(255,255,255,0.8); float:right"> <p> No colours</p>
+				<section>
+					<h1>Vector Tile</h1>
+					<div style="float:left; width:50%;">
+						<img src="https://mapzen.com/resources/projects/vector-tiles/square-of-math.gif">
+					</div>
+					<div style="float:right; width:50%">
+						<p> No colours</p>
 						<p> Arrays in a 256 x 256 matrix</p>
 						<p> Same tiling schema as Raster png tiles.</p>
 						<p> Binary format</p>
@@ -472,37 +476,33 @@
 				</section>
 				<section>
 					<h1>Where to get them?</h1>
-					<h3>Download</h3>
-					<p> <a href="http://osm2vectortiles.org/">osm2vectortiles</a></p>
+					<p><a href="http://osm2vectortiles.org/">osm2vectortiles</a></p>
 					<p><a href="https://openmaptiles.org/">https://openmaptiles.org/</a></p>
-					<p>Make with Mapbox Studio</p>
-					<h3>Hosted</h3>
-					<p>Mapzen</p>
-					<pre><code>https://tile.mapzen.com/mapzen/vector/v1/{layers}/{z}/{x}/{y}.{format}</code></pre>
+					<p><a href="https://www.mapbox.com/mapbox-studio/">Mapbox Studio </a></p>
 					<a href="https://openmaptiles.com/hosting/">https://openmaptiles.com/hosting/</a>
-					<p><a href="https://developer.mapquest.com/documentation/">Mapquest</a></p>
-					<p>Licences..</p>
+					<pre><code>https://tile.mapzen.com/mapzen/vector/v1/{layers}/{z}/{x}/{y}.{format}</code></pre>
 				</section>
-				<section data-background="http://erictheise.com/geostack-deck/images/Map-nik-cake-osm-7.png">
-					<h1>Bake them your self</h1>
-					<div style="background-color:rgba(255,255,255,0.8)">
+				<section>
+					<h1>Bake them yourself</h1>
+					<div style="float:left; width:50%;">
+						<img src="http://erictheise.com/geostack-deck/images/Map-nik-cake-osm-7.png">
+					</div>
+					<div  style="float:right; width:50%;">
 						<p><a href="http://tegola.io/">Tegola </a></p>
 						<p><a href="https://github.com/mapbox/tippecanoe">TippeCanoe</a></p>
 						<p><a href="http://docs.geoserver.org/latest/en/user/extensions/vectortiles/tutorial.html">GeoServer </a></p> 
 						<p> <a href="https://github.com/pka/t-rex">T-rex</a></p>
+						<p><a href="http://postgis.net/docs//ST_AsMVT.html">PostGIS MVT</a></p>
 						<p><a href="https://github.com/mapbox/awesome-vector-tiles">More </a> command line tools</p>
+						<p><a href="http://docs.geoserver.org/latest/en/user/extensions/vectortiles/tutorial.html">GeoServer </a></p>
+						<p><a href="http://tegola.io/">Tegola </a></p>
 					</div>
 				</section>
-				<section data-background="img/amsterdam.png">
-					<h3>Host yourself?</h3>
-					<p>Use locally offline</p>
-					<p><a href="http://docs.geoserver.org/latest/en/user/extensions/vectortiles/tutorial.html">GeoServer </a></p>
-					<p><a href="http://tegola.io/">Tegola </a></p>
-					<p> Tile servers</p>
-					<h3> The Netherlands!</h3>
+				<section>
 					<p> NL Amsterdam Datalab.</p>
 					<pre><code data-trim data-noescape>"https://t1.data.amsterdam.nl/wm/{z}/{x}/{y}.pbf"</code></pre>
-					<p> Soon PDOK/Kadaster?...BRT of the Netherlands! </p>
+					<p> PDOK BRT+BGT </p>
+					<pre><code data-trim data-noescape>"http://geodata.nationaalgeoregister.nl/beta/topotiles/{z}/{x}/{y}.pbf"</code></pre>
 				</section>
 				<section>
 					<h1>How to visualize them?</h1>	
@@ -510,7 +510,7 @@
 					<p><a href="https://www.mapbox.com/mapbox-gl-js/api/">MapboxGL</a></p>
 					<p><a href="https://d3js.org/">D3.js</a></p>
 					<p><a href="http://maputnik.com/">Maputnik</a></p>
-					<p>Mapbox studio</p>
+					<p><a href="https://www.mapbox.com/mapbox-studio/">Mapbox Studio </a></p>
 					<p>JavaScript</p>
 				</section>
 				<section>
@@ -538,7 +538,11 @@
 			<section data-background="presentation/img/Screenshot_background3.png">
 				<section>
 					<h1> More info? </h1>
-					<p><a href="https://github.com/NieneB/Webmapping_for_beginners/wiki/Interesting-links">My list of interesting links, workshops, presentations and background information</a></p>
+					<p>My lists of <p>
+					<p>interesting links, workshops, presentations and background information: </p>
+					<p><a href="https://github.com/NieneB/Webmapping_for_beginners/wiki/Interesting-links">for webmapping in general and d3 & Leaflet</a></p>
+					<p><a href="https://github.com/maptime-ams/vector-tiles-workshop/wiki/Interesting-links">about vector tiles</a></p>
+					<br/>
 					<p>Feel free to contact me!</p>
 				</section>
 				<section>
