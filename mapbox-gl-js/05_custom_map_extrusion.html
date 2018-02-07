@@ -1,0 +1,44 @@
+ <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>A basic map with MapboxGL.js</title>
+    
+    <!--add MapboxGLjs CSS-->
+     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.css' rel='stylesheet' />
+    
+    <!--our own style rules-->
+    <style type="text/css">
+      body, html {
+        height: 90%;
+      }
+      #map-container {
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <!--The div in which the map will be created-->
+    <div id="map-container"></div>
+    
+    <!--load mapboxgl.js-->
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.js'></script>
+    
+    <!--our own code to create the map-->
+    <script>
+    var map = new mapboxgl.Map({
+        container: 'map-container',
+        style: '05_mystyle.json',
+        hash: true,
+        zoom: 12,
+        pitch: 60,
+        bearing: -62,
+        center: [ 5.9, 50.87]
+    });
+
+    // Add zoom and rotation controls to the map.
+    map.addControl(new mapboxgl.NavigationControl(), "top-left");
+    </script>
+  </body>
+</html>
+

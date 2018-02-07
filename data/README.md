@@ -1,12 +1,12 @@
 ## Data preprocessing
 
 ## Data Transformation
-The input data is a .txt file with point coordinates. We need to convert this to a `GeoJSON` file in order to plot it over our maps. We can do this with Qgis or  `ogr2ogr`
+The input data is a `.txt` file with point coordinates. We need to convert this to a `GeoJSON` file in order to plot it over our maps. We can do this with `Qgis` or  `ogr2ogr`
 
 
     ogr2ogr -f geojson data/aardbevingen_NL.geojson CSV:data/2017_06_Aardbeving_NL.txt -oo X_POSSIBLE_NAMES=LON -oo Y_POSSIBLE_NAMES=LAT -oo KEEP_GEOM_COLUMNS=NO    
 
-To convert to topojson:
+To convert to topoJSON:
 
     npm install -g topojson
     geo2topo data/aardbevingen_NL.geojson > data/aardbevingen_NL.topojson

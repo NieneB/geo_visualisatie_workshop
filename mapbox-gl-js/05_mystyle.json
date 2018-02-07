@@ -1,0 +1,151 @@
+{
+    "version": 8,
+    "name": "aardbeving",
+    "glyphs": "http://fonts.openmaptiles.org/{fontstack}/{range}.pbf",
+    "sources": {
+           "pdok":{
+                "type": "vector",
+                "tiles":  ["http://geodata.nationaalgeoregister.nl/beta/topotiles/{z}/{x}/{y}.pbf"]
+            },
+            "aardbeving_points":{
+                "type": "geojson",
+                "data": "http://localhost:8000/data/aardbevingen_NL.geojson"
+            },
+            "aardbeving_buffer":{
+                "type": "geojson",
+                "data": "http://localhost:8000/data/aardbevingen_NL_buffer.geojson"
+            }
+    },
+    "layers":[ 
+        { 
+            "id":  "background",
+            "type": "background",
+            "paint": {
+                "background-color":"#FFFFFF"
+                }
+        },
+        {
+            "id": "admin",
+            "type": "fill",
+            "source": "pdok",
+            "source-layer": "admin",
+            "maxzoom": 22,
+            "minzoom": 0,
+            "filter": ["==", "lod1", "province"],
+            "paint": {
+                "fill-color" :"#54D8CC",
+                "fill-outline-color": "#ffffff"
+            }
+        },
+         {
+            "id": "buildup",
+            "type": "fill",
+            "source": "pdok",
+            "source-layer": "urban",
+            "maxzoom": 22,
+            "minzoom": 8,
+            "filter": ["==", "lod1", "urban_area"],
+            "paint": {
+                "fill-color" :"#ffffff",
+                "fill-opacity": 0.5
+            }
+        },
+        {
+            "id": "aardbeving",
+            "type": "circle",
+            "source": "aardbeving_points",
+            "maxzoom": 22,
+            "minzoom": 0,
+            "paint":{
+                "circle-radius": {
+                    "stops":[
+                        [0, 3],
+                        [8, 2],
+                        [12, 5],
+                        [14, 10]
+                    ]
+                },
+                "circle-color":{
+                    "type": "categorical",
+                    "property": "TYPE",
+                    "stops":[
+                        ["ind", "#f3ec9c"],
+                        ["tec", "#F5CB5B"]
+                    ]
+                }
+            }
+        },
+        {
+            "id": "aardbeving_extrusion",
+            "type": "fill-extrusion",
+            "source": "aardbeving_buffer",
+            "maxzoom": 22,
+            "minzoom": 11,
+            "paint":{
+                "fill-extrusion-height": [
+                        "interpolate",["linear"],["zoom"],
+                        11, ["*", 10, ["get", "DEPTH"]],
+                        15, [ "*", 100 , ["get", "DEPTH"]]
+                ],
+                "fill-extrusion-color":{
+                    "type": "categorical",
+                    "property": "TYPE",
+                    "stops":[
+                        ["ind", "#f3ec9c"],
+                        ["tec", "#F5CB5B"]
+                    ]
+                },
+                "fill-extrusion-opacity": 0.9
+            }
+        },
+        {
+            "id": "labels",
+            "type": "symbol",
+            "source": "aardbeving_points",
+            "maxzoom": 20,
+            "minzoom": 8,
+            "layout": {
+                "symbol-placement": "point",
+                "text-field":"{LOCATION}",
+                "text-font": ["Open Sans Regular"],
+                "text-size": 12,
+                "text-anchor": "center",
+                "text-justify": "center",
+                "text-padding": 20,
+                "text-allow-overlap": false
+
+            },
+            "paint":{
+                "text-opacity": 1,
+                "text-color": "#535353"
+            }
+        },
+         {
+            "id": "high_prior_labels",
+            "type": "symbol",
+            "source": "pdok",
+            "source-layer": "label",
+            "maxzoom": 20,
+            "minzoom": 5,
+            "filter": [">=", "z_index", 10000],
+            "layout": {
+                "visibility": "visible",
+                "symbol-placement": "point",
+                "symbol-avoid-edges" : false,
+                "text-field":"{name}",
+                "text-font": ["Open Sans Regular"],
+                "text-size": 20,
+                "text-max-width": 5,
+                "text-anchor": "center",
+                "text-line-height": 1,
+                "text-justify": "center",
+                "text-padding": 20,
+                "text-allow-overlap": false
+            },
+            "paint":{
+                "text-opacity": 1,
+                "text-color": "#535353"
+            }
+        }
+    ]
+}
