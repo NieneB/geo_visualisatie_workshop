@@ -39,10 +39,10 @@
             d3.json("../data/gemeenten2017.geojson", function(error, gemeenten) {
                 if (error) throw error;
 
-                var projection = d3.geoMercator()
-                    .fitSize([width, height], gemeenten)
+                let projection = d3.geoMercator()
+                    .fitSize([width, height], gemeenten);
 
-                path = d3.geoPath()
+                let path = d3.geoPath()
                     .projection(projection);
 
                 svg.append("g")

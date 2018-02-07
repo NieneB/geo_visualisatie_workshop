@@ -47,8 +47,7 @@
                 svg = d3.select("body")
                     .append("svg")
                     .attr('width', width)
-                    .attr('height', height),
-                gemeenten;
+                    .attr('height', height);
 
             d3.queue()
                 .defer(d3.json, "../data/gemeenten2017.topojson")
@@ -61,10 +60,10 @@
 		gemeenten = topojson.feature(municipalities, municipalities.objects.municipalities);
                 earthquakes.features.sort(function(a, b) { return b.properties.MAG - a.properties.MAG; });
 
-                var projection = d3.geoMercator()
-                    .fitSize([width, height], gemeenten)
+                let projection = d3.geoMercator()
+                    .fitSize([width, height], gemeenten);
 
-                path = d3.geoPath()
+                let path = d3.geoPath()
                     .projection(projection);
 
                 svg.append("g")

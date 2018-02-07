@@ -62,7 +62,7 @@
                 earthquakes.features.sort(function(a, b) { return b.properties.MAG - a.properties.MAG; });
 
                 let projection = d3.geoMercator()
-                    .fitSize([width, height], gemeenten)
+                    .fitSize([width, height], gemeenten);
 
                 let path = d3.geoPath()
                     .projection(projection);
