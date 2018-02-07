@@ -1,12 +1,13 @@
 ## Interactive Web Map with [MapboxGL.js](https://www.mapbox.com/mapbox-gl-js/api/)
 
-- Load basic Mapbox Map
-- Load Custom Vector Tiles
-- Style Custom Vector Tiles
-- Adding GeoJSON
-- Extrusions
+[ ] Load basic Mapbox Map
+[ ] Load Custom Vector Tiles
+[ ] Adding GeoJSON
+[ ] Fonts
+[ ] Extrusion
 
-## Vector Tile Map
+## 1. Basic Vector Tile Map
+[01_basemap.html]
 
 Vector tiles do not contain any information about how to visualize them. Therefore we will always need 2 sources when displaying a web map based on vector tiles:
 
@@ -14,11 +15,6 @@ Vector tiles do not contain any information about how to visualize them. Therefo
 - Styling: JSON formatted style definition. 
 
 The style definition is most commonly supplied in a `JSON` format. Mapbox provides good documentation on the [style specifications] ](https://www.mapbox.com/mapbox-gl-js/style-spec/)
-
-
-## Making a basic map
-
-[[01_basemap.html]]
 
 We will start with the most basic form of using MapboxGL.js using their already provided styles. In order to use the default styles and data we need a Mapbox token. Later on we will use MapboxGL.js without this token, because we will use our own data and styles! 
 
@@ -53,7 +49,7 @@ var map = new mapboxgl.Map({
 `zoom`,`pitch` , `bearing` and `center` set the starting position of our map when opening it the first time. Now pointing to Amsterdam. 
 
 
-## Making a custom style
+## 2. Making a custom style
 
 [[02_custom_map.html]] & [[02_mystyle.json]]
 
@@ -125,7 +121,7 @@ var map = new mapboxgl.Map({
         center: [ 4.8, 52.4]
     });
 ```
-## GeoJSON source
+## 3. Adding a GeoJSON source
 
 [[03_custom_map_geojson.html]] & [[03_mystyle.json]]
 
@@ -163,7 +159,7 @@ And define a point layer:
 ```
 
 
-## Fonts Glyps
+## 4. Fonts Glyps
 
 [[04_custom_map_fonts.html]] & [[04_mystyle.json]]
 
