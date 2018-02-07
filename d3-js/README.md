@@ -56,7 +56,7 @@ let width = 450,
     .text(function(d) { return d.properties.statnaam});
 ```
 
-## 1. Use TopoJSON instead
+## 2. Use TopoJSON instead
 
 [02_topojson.html](02_topojson.html)
 
@@ -91,14 +91,14 @@ In the [process](../data/Makefile) of converting GeoJSON to TopoJSON we have:
 * renamed the property `statnaam` to the property `name`;
 * dropped the property `geometry_name`.
 
-## 1. Add multiple sources
+## 3. Add multiple sources
 
 [03_queue.html](03_queue.html)
 
-## 1. Visualise your data
+## 4. Visualise your data
 
 [04_visualisation.html](04_visualisation.html)
 
-## 1. Add a base map for context
+## 5. Add a base map for context
 
 [06_basemap.html](06_basemap.html)
