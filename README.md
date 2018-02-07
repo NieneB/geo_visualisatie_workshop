@@ -7,49 +7,77 @@ https://www.vizualism.com/festival/
 
 # Presentation
 
-https://nieneb.github.io/geo_visualisatie_workshop/
+The presentation can be found here: https://nieneb.github.io/geo_visualisatie_workshop/
 
-# Content
+# Workshop
 
-* Why geo?
-* What is a map? 
-* Geo Data Exploration
-* Getting my map to the web
-	- Leaflet.js
-	- D3.js
-	- MapboxGL.js
+### Data
 
-# Leaflet.js
+see [data/README.md](data/README.md)
 
-see [leaflet-js/README.md](leaflet-js/README.md)
+The geojson and topojson files  used are available in `../data`. See the end of this file for the method used to create them.
 
-- Webmap / slippy maps
-- adding WMS
-- adding GeoJSON/TopoJSON
-- Time animation
+### How to run
+
+Clone this repository from Github: `git clone https://github.com/NieneB/geo_visualisatie_workshop`
+
+Some of these examples can be viewed by simply opening the file in your web browser. But for some a proper web server is required. The two simplest options are:
+
+1. if you have Python installed, you can run `python -m SimpleHTTPServer` from the root of the repository. Then browse to the address it provides and add the name of the file you want to see, e.g. `http://localhost:8000/leaflet-js/01_basemap.html`
+2. if you have NodeJS installed, you can run the `live-server` module which also has live-reload capabilities: it will refresh your browser when you make changes. Install it with `npm install -g live-server` and run it with `live-server` in the project root. Then you can open `http://localhost:8080/leaflet-js/01_basemap.html` in your browser, for example.
+
 
 # D3.js
+
+See [d3-js/README.md](d3-js/README.md)
+
+What will you do: 
+
+Topics covered:
 
 - Projections
 - GeoJSON
 - Time
 
+# Leaflet.js
+
+See [leaflet-js/README.md](leaflet-js/README.md)
+
+What will you do: 
+
+- [ ] Basic Base map
+- [ ] Projections EPSG:3857 and EPSG:28992
+- [ ] WMS overlay
+- [ ] Adding a GeoJSON
+- [ ] TopoJSON
+- [ ] Interactivity
+
+Topics covered:
+
+- Interactive map
+- Webmap / slippy maps
+- adding WMS
+- adding GeoJSON/TopoJSON
+- Projections
+- Using Dutch Geo Data
+
 
 # MapboxGL.js
 
+see [mapbox-gl-js/README.md](mapbox-gl-js/README.md)
+
+What will you do:
+
+- [ ] Load basic Mapbox Map
+- [ ] Load Custom Vector Tiles
+- [ ] Adding GeoJSON
+- [ ] Fonts
+- [ ] Extrusion
+
+Topics covered:
+
+- Vector Tiles
+- PDOK data
 - Adding GeoJSON
-- Making own style
-- Making/Using custom VT
-- Animations
-- extrusions
+- Styling options
 
-
-# Data voorbereiden
-Input tsv zit in `data/`. Converteer naar geojson met:
-
-    ogr2ogr -f geojson data/aardbevingen_NL.geojson CSV:data/2017_06_Aardbeving_NL.txt -oo X_POSSIBLE_NAMES=LON -oo Y_POSSIBLE_NAMES=LAT -oo KEEP_GEOM_COLUMNS=NO    
-
-Converteer naar topojson met:
-
-    npm install -g topojson
-    geo2topo data/aardbevingen_NL.geojson > data/aardbevingen_NL.topojson

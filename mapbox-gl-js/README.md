@@ -7,7 +7,7 @@
 - [ ] Extrusion
 
 ## 1. Basic Vector Tile Map
-[01_basemap.html](/01_basemap.html)
+[01_basemap.html](01_basemap.html)
 
 Vector tiles do not contain any information about how to visualize them. Therefore we will always need 2 sources when displaying a web map based on vector tiles:
 
@@ -51,7 +51,8 @@ var map = new mapboxgl.Map({
 
 ## 2. Making a custom style
 
-[[02_custom_map.html]] & [[02_mystyle.json]]
+[02_custom_map.html](02_custom_map.html) & [02_mystyle.json](02_mystyle.json)
+
 
 We are also free to create our custom style. For this we need to create a separte style JSON file. A Mapbox style spec has the following Root properties:
 
@@ -123,7 +124,7 @@ var map = new mapboxgl.Map({
 ```
 ## 3. Adding a GeoJSON source
 
-[[03_custom_map_geojson.html]] & [[03_mystyle.json]]
+[03_custom_map_geojson.html](03_custom_map_geojson.html) & [03_mystyle.json](03_mystyle.json)
 
 We can add mutiple sources to our style spec. Let's add our points. For this we need to run a local serve again! 
 
@@ -161,7 +162,7 @@ And define a point layer:
 
 ## 4. Fonts Glyps
 
-[[04_custom_map_fonts.html]] & [[04_mystyle.json]]
+[04_custom_map_fonts.html](04_custom_map_fonts.html) & [04_mystyle.json](04_mystyle.json)
 
 In order to add labels we need a font. Fonts have also to be converted to pbf, in order to render them with WebGL. Mapbox provides some fonts but then you need the Mapbox token again.
 We add the `glyphs` reference at the top of our style specification. See [[04_mystyle.json]]
