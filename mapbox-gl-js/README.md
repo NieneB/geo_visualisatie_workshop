@@ -1,13 +1,13 @@
 ## Interactive Web Map with [MapboxGL.js](https://www.mapbox.com/mapbox-gl-js/api/)
 
-[ ] Load basic Mapbox Map
-[ ] Load Custom Vector Tiles
-[ ] Adding GeoJSON
-[ ] Fonts
-[ ] Extrusion
+- [ ] Load basic Mapbox Map
+- [ ] Load Custom Vector Tiles
+- [ ] Adding GeoJSON
+- [ ] Fonts
+- [ ] Extrusion
 
 ## 1. Basic Vector Tile Map
-[01_basemap.html]
+[01_basemap.html](/01_basemap.html)
 
 Vector tiles do not contain any information about how to visualize them. Therefore we will always need 2 sources when displaying a web map based on vector tiles:
 
