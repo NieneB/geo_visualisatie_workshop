@@ -95,6 +95,33 @@ In the [process](../data/Makefile) of converting GeoJSON to TopoJSON we have:
 
 [03_queue.html](03_queue.html)
 
+Once we have drawn the Dutch municipalities, we'd like to show the earthquakes as well. This means we have to pull in 2 data sets. We don't want the page drawing to be delayed by these downloads. However, we can only run our scripts once both data sets are available in the web browser. This is what [d3.queue](https://github.com/d3/d3-queue) takes care of. It's already part of the minified D3.js library.
+
+*Note, the earthquake data is stored as GeoJSON as there is little to gain from turning this into TopoJSON*
+
+1. Pull in the geo data
+
+```javascript
+  d3.queue()
+    .defer(d3.json, "../data/gemeenten2017.topojson")
+    .defer(d3.json, "../data/aardbevingen_NL.geojson")
+    .await(ready);
+
+  function ready(error, municipalities,earthquakes){
+    if (error) throw error;
+```
+
+2. Draw the earthquake data on the map
+
+```javascript
+  svg.selectAll(".quakes")
+    .data(earthquakes.features)
+    .enter()
+    .append("path")
+    .attr("d", path.pointRadius(3))
+    .attr("class", "quakes");
+```
+
 ## 4. Visualise your data
 
 [04_visualisation.html](04_visualisation.html)
