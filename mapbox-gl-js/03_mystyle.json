@@ -7,8 +7,8 @@
                 "tiles":  ["http://geodata.nationaalgeoregister.nl/beta/topotiles/{z}/{x}/{y}.pbf"]
             },
             "aardbeving_points":{
-            "type": "geojson",
-            "data": "http://localhost:8000/data/aardbevingen_NL.geojson"
+                "type": "geojson",
+                "data": "http://localhost:8000/data/aardbevingen_NL.geojson"
             }
     },
     "layers":[ 
@@ -30,6 +30,24 @@
             "paint": {
                 "fill-color" :"#54D8CC",
                 "fill-outline-color": "#ffffff"
+            }
+        },
+        {
+            "id": "aardbeving",
+            "type": "circle",
+            "source": "aardbeving_points",
+            "maxzoom": 22,
+            "minzoom": 0,
+            "paint":{
+                "circle-radius": 5,
+                "circle-color":{
+                    "type": "categorical",
+                    "property": "TYPE",
+                    "stops":[
+                        ["ind", "#f3ec9c"],
+                        ["tec", "#F5CB5B"]
+                    ]
+                }
             }
         }
     ]
