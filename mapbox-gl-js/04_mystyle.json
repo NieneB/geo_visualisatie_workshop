@@ -1,0 +1,174 @@
+{
+    "version": 8,
+    "name": "aardbeving",
+    "glyphs": "http://fonts.openmaptiles.org/{fontstack}/{range}.pbf",
+    "sources": {
+           "pdok":{
+                "type": "vector",
+                "tiles":  ["http://geodata.nationaalgeoregister.nl/beta/topotiles/{z}/{x}/{y}.pbf"]
+            },
+            "aardbeving_points":{
+                "type": "geojson",
+                "data": "http://localhost:8000/data/aardbevingen_NL.geojson"
+            }
+    },
+    "layers":[ 
+        { 
+            "id":  "background",
+            "type": "background",
+            "paint": {
+                "background-color":"#FFFFFF"
+                }
+        },
+        {
+            "id": "admin",
+            "type": "fill",
+            "source": "pdok",
+            "source-layer": "admin",
+            "maxzoom": 22,
+            "minzoom": 0,
+            "filter": ["==", "lod1", "province"],
+            "paint": {
+                "fill-color" :"#54D8CC",
+                "fill-outline-color": "#ffffff"
+            }
+        },
+         {
+            "id": "buildup",
+            "type": "fill",
+            "source": "pdok",
+            "source-layer": "urban",
+            "maxzoom": 22,
+            "minzoom": 8,
+            "filter": ["==", "lod1", "urban_area"],
+            "paint": {
+                "fill-color" :"#ffffff",
+                "fill-opacity": 0.5
+            }
+        },
+        {
+            "id": "aardbeving",
+            "type": "circle",
+            "source": "aardbeving_points",
+            "maxzoom": 22,
+            "minzoom": 0,
+            "paint":{
+                "circle-radius": {
+                    "stops":[
+                        [0, 3],
+                        [8, 2],
+                        [12, 5],
+                        [14, 10]
+                    ]
+                },
+                "circle-color":{
+                    "type": "categorical",
+                    "property": "TYPE",
+                    "stops":[
+                        ["ind", "#f3ec9c"],
+                        ["tec", "#F5CB5B"]
+                    ]
+                }
+            }
+        },
+                {
+            "id": "low_prior_labels",
+            "type": "symbol",
+            "source": "pdok",
+            "source-layer": "label",
+            "maxzoom": 20,
+            "minzoom": 8,
+            "filter": ["==", "lod1", "residential"],
+            "layout": {
+                "visibility": "visible",
+                "symbol-placement": "point",
+                "symbol-avoid-edges" : false,
+                "text-field":"{name}",
+                "text-font": ["Open Sans Regular"],
+                "text-size":{
+                    "property": "z_index",
+                    "type": "categorical",
+                    "stops":[
+                        [1, 10],
+                        [10, 12],
+                        [100, 14],
+                        [1000, 16]
+                    ],
+                    "default": 10
+                },
+                "text-max-width": 5,
+                "text-anchor": "center",
+                "text-line-height": 1,
+                "text-justify": "center",
+                "text-padding": 20,
+                "text-allow-overlap": false
+            },
+            "paint":{
+                "text-opacity": 1,
+                "text-color": "#535353"
+            }
+        },
+        {
+            "id": "medium_prior_labels",
+            "type": "symbol",
+            "source": "pdok",
+            "source-layer": "label",
+            "maxzoom": 20,
+            "minzoom": 7,
+            "filter": [">=", "z_index", 1000],
+            "layout": {
+                "visibility": "visible",
+                "symbol-placement": "point",
+                "symbol-avoid-edges" : false,
+                "text-field":"{name}",
+                "text-font": ["Open Sans Regular"],
+                 "text-size":{
+                    "property": "z_index",
+                    "type": "categorical",
+                    "stops":[
+                        [10000, 16],
+                        [100000, 18]
+                    ],
+                    "default": 10
+                },
+                "text-max-width": 5,
+                "text-anchor": "center",
+                "text-line-height": 1,
+                "text-justify": "center",
+                "text-padding": 20,
+                "text-allow-overlap": false
+            },
+            "paint":{
+                "text-opacity": 1,
+                "text-color": "#535353"
+            }
+        },
+         {
+            "id": "high_prior_labels",
+            "type": "symbol",
+            "source": "pdok",
+            "source-layer": "label",
+            "maxzoom": 20,
+            "minzoom": 5,
+            "filter": ["==", "z_index", 1000000],
+            "layout": {
+                "visibility": "visible",
+                "symbol-placement": "point",
+                "symbol-avoid-edges" : false,
+                "text-field":"{name}",
+                "text-font": ["Open Sans Regular"],
+                "text-size": 20,
+                "text-max-width": 5,
+                "text-anchor": "center",
+                "text-line-height": 1,
+                "text-justify": "center",
+                "text-padding": 20,
+                "text-allow-overlap": false
+            },
+            "paint":{
+                "text-opacity": 1,
+                "text-color": "#535353"
+            }
+        }
+    ]
+}
