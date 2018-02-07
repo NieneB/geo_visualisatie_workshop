@@ -34,9 +34,7 @@
                 svg = d3.select("body")
                     .append("svg")
                     .attr('width', width)
-                    .attr('height', height),
-                tau = 2 * Math.PI,
-                gemeenten;
+                    .attr('height', height);
 
             d3.json("../data/gemeenten2017.geojson", function(error, gemeenten) {
                 if (error) throw error;
