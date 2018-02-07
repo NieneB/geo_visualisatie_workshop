@@ -143,15 +143,11 @@
 				</section>
 				<section>
 					<h1><u>Geo</u> Data = Data + Location</h1>
-					<div style="float:left; width:50%;">
-						<p><em class="fragment grow">Vector</em> vs Raster</p>
+						<p>Vector vs Raster</p>
+						<img src="presentation/img/raster.png" width="48%" />
+						<img src="presentation/img/vector_types.png" width="48%" />
 						<p>Point  - line - Polygon</p>
 						<p>Attributes</p>
-					</div>
-					<div style="float:right; width:50%;">
-						<img src="presentation/img/raster.png"/>
-						<img src="presentation/img/vector_types.png"/>
-					</div>
 				</section>
 				<section>
 					<h1>Maps = Collection of <u>Geo</u> data</h1>
@@ -161,21 +157,23 @@
 				</section>
 				<section>
 					<h1>Coordinate system</h1>	
-					<p>Communicate locations & distances on the earth's surface</p>
+					<p>Communicate locations & distances on the Earth's surface</p>
+					<p>From 3D shape to 2D flat map? </p>
 				</section>
 				<section>
 					<h1>Shape of the earth?</h1>
-					<p>From 3D shape to 2D flat map? </p>
-					<p>The real shape of the earth is too complex to be useful as a reference for measurement.</p>
-					<p>Reference Ellipsoid</p>
+					<img src="presentation/img/geoid.jpg" width="50%" />
+					<p>The real shape of the earth is too complex to be useful as a reference for measurement..</p>
 				</section>
 				<section>
 					<h1>Geographic coordinate system</h1>
+					<img src="presentation/img/geograpic_coord.jpg" width="50%"/>
 					<p>3D model</p>
 					<p>Longitude Latitude</p>
 				</section>
 				<section>
 					<h1>Projected coordinate system</h1>
+					<img src="presentation/img/projected_coord.jpg" width="50%" />
 					<p>Mathematical projection / translation</p>
 					<p>2D</p>
 				</section>
@@ -184,17 +182,38 @@
 					<h1>WGS84 EPSG:4326 </h1>
 					<p>Lon Lat in decimal degrees</p>
 					<p>GPS</p>
-					<p>Standard way to store most geodata for the Web</p>
-					<p>GeoJSON</p>
-					<aside class="notes">standardize the way we describe locations on a map</aside>
+					<p>Standard way to store most geodata for the Web:</p>
+					<p><a href="http://geojson.org/">GeoJSON</a></p>
+					<pre><code>
+{
+  "type": "Feature",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [125.6, 10.1]
+  },
+  "properties": {
+    "name": "Dinagat Islands"
+  }
+}</code></pre>
+					<aside class="notes">standardize the way we describe locations on a map
+					GeoJSON is a geospatial data interchange format based on JavaScript
+   Object Notation (JSON).
+ GeoJSON uses a geographic coordinate reference system, World Geodetic
+   System 1984, and units of decimal degrees.
+    geometry types: Point, LineString, Polygon, MultiPoint, MultiLineString, and MultiPolygon. </aside>
 				</section>
 				<section>
 					<h4>Projected Coordinate System:</h4>
 					<h1>Spherical/Web Mercator EPSG:3857</h1>
 					<p>Square, scale not relevant, shapes important</p>
-					<a href="https://www.youtube.com/watch?v=eLqC3FNNOaI">West Wing</a>
+					<img src="presentation/img/image23.png" width="25%"/>
 					<p><i>We store data in EPSG:4326, but display it in EPSG:3857!</i></p>
 					<aside class="notes">first introduced by Google and is used in almost 100% of web maps</aside>
+				</section>
+				<section>
+					<h1>Why is Mercator wrong?</h1>
+					<p><a href="https://bramus.github.io/mercator-puzzle-redux/">True Size puzzle</a></p>
+					<p><a href="https://www.youtube.com/watch?v=eLqC3FNNOaI">West Wing</a></p>
 				</section>
 				<section>
 					<h4>Projected Coordinate System:</h4>
@@ -209,11 +228,13 @@
 					<p>Web Mercator EPSG:3857</p>
 					<h4>Projected Coordinate System:</h4>
 					<p>RD New EPSG:28992</p>
-					<a href="http://lyzidiamond.com/posts/4326-vs-3857">[1]</a>
-					<a href="https://alastaira.wordpress.com/2011/01/23/the-google-maps-bing-maps-spherical-mercator-projection/">[2]</a>
 				</section>
 				<section>
 					<img src="https://media.giphy.com/media/6KKab1ydLq1uU/giphy.gif">
+					<br/>
+					
+					<p><a href="http://lyzidiamond.com/posts/4326-vs-3857">[1]</a></p>
+					<p><a href="https://alastaira.wordpress.com/2011/01/23/the-google-maps-bing-maps-spherical-mercator-projection/">[2]</a></p>
 				</section>
 			</section>
 			<!-- Gettin my map to the web -->
@@ -222,20 +243,19 @@
 					<h1>Getting my map to the web</h1>
 				</section>
 				<section>
-					<img src="presentation/img/webmapping_4_steps.jpg">
-					<p>Online hosting</p>
+					<img src="presentation/img/geowebUniverse.png">
+<!-- 					<p>Online hosting</p>
 					<p>Download</p>
 					<p>Qgis , ArcMap</p>
-					<p>Postgis, SQL</p>
+					<p>Postgis, SQL</p -->>
 				</section>
 				<section>
-					<h4>Transform</h4>
-					<h4>Geometry </h4>
-					<h4>Attributes </h4>
+					<img src="presentation/img/web_map_building_blocks.png">
 				</section>
 				<section>
 					<h1>Static vs Dynamic</h1>
 					<h2>Interactive</h2>
+					<a href="https://books.google.nl/books?hl=en&lr=&id=aO5OYTP8LyIC&oi=fnd&pg=PP1&dq=kraak+web+cartography&ots=3Qi3znZ6fq&sig=x_9oCTlAljMcP8rgAGMPNa7MKU0#v=onepage&q=kraak%20web%20cartography&f=false">[1]</a>
 					<aside class= "notes"><p>GIS web map</p>
 					<p> Animated, real time</p>
 					<p>Collaborative web maps</p>
@@ -243,11 +263,13 @@
 					<p>Static web maps</p></aside>
 				</section>
 				<section>
-					<h1>Techniques</h1>
-					<p>Static Graphics</p>
-					<p>Tiled web maps</p>
-					<p>Vector Tiles</p>
-					<p>Map servers (WMS, WMTS, WFS)</p>
+					<h1>JavaScript Libraries for Mapping</h1>
+					<p><a href="https://openlayers.org/">OpenLayers</a>
+					<p class="fragment grow"><a href="http://leafletjs.com/">Leaflet.js</a></p>
+					<p class="fragment grow"><a href="https://d3js.org/">D3.js</a></p>
+					<p><a href="https://developers.google.com/maps/documentation/javascript/">Google Maps</a></p>
+					<p class="fragment grow"><a href="https://www.mapbox.com/mapbox.js/api/v3.1.1/">Mapbox</a></p>
+					<p><a href="https://developer.here.com/develop/javascript-api">HERE Maps</a></p>
 				</section>
 				<section>
 					<h1>Static: D3.js</h1>
@@ -364,18 +386,24 @@
 					<h2 class="fragment fade-in">Leaflet is a framework </h2>
 				</section>
 				<section>
-					<h1>Leaflet.js Examples!</h1>
+					<h1>Let's make a basic map!</h1>
+					<a href="http://bl.ocks.org/hpfast/555359c331c5f72cdea49375abee11a2">Base map in WebMercator</a>
+					<p>Sooo many styles provided</p><a href="http://leaflet-extras.github.io/leaflet-providers/preview/">have a look</a>
 				</section>
 				<section>
-					<h1>Projections</h1>
+					<h1>Projections in Leaflet</h1>
+					<a href="http://bl.ocks.org/hpfast/3504bcdd15dc7de76a9b1b5fbec2eac9">Base map in RDnew</a>
+					<a href="https://kartena.github.io/Proj4Leaflet/">Proj4Leaflet</a>
+					<a href="http://proj4js.org/">Proj4js</a>
 				</section>
 				<section>
-					<h1>Layers!</h1>
+					<h1>Layers</h1>
+					<a href="http://bl.ocks.org/hpfast/5017e08b6c27b5abd287c2cf21c0c533">Adding GeoJSON</a>
 					<div style="float: left; width: 50%;">
 					<p>Base Layer</p>
 					<p>Raster</p>
 					<img src="presentation/img/raster.png" width="500px">
-					</div>	
+					</div>
 					<div style="float: right; width: 50%;"">
 						<p>Data Layer / Feature Layer</p>
 						<p>Vector</p>
@@ -496,15 +524,7 @@
 				<section>
 					<h1>Summary</h1>
 				</section>
-				<section>
-					<h1>JavaScript Libraries for Mapping</h1>
-					<p><a href="https://openlayers.org/">OpenLayers</a>
-					<p><a href="http://leafletjs.com/">Leaflet.js</a></p>
-					<p><a href="https://d3js.org/">D3.js</a></p>
-					<p><a href="https://developers.google.com/maps/documentation/javascript/">Google Maps</a></p>
-					<p><a href="https://www.mapbox.com/mapbox.js/api/v3.1.1/">Mapbox</a></p>
-					<p><a href="https://developer.here.com/develop/javascript-api">HERE Maps</a></p>
-				</section>
+				
 			</section>
 			<!-- Wrap up -->
 			<section data-background="presentation/img/Screenshot_background3.png">
@@ -514,6 +534,9 @@
 					<a href="https://github.com/maptime-ams/vector-tiles-workshop/wiki">https://github.com/maptime-ams/vector-tiles-workshop/wiki</a>
 					<a  style=" text-transform: initial" href="https://github.com/NieneB/Webmapping_for_beginners">github.com/NieneB/webmapping_for_beginners</a>
 					<a href="https://github.com/maptime-ams/Leaflet-D3-workshop">Workshop Maptime Leaflet D3</a>
+					<a href="https://maptimeboston.github.io/leaflet-intro/">Maptime Boston Leaflet.js</a>
+					<a href="https://github.com/veltman/learninglunches/tree/master/maps">Workshop</a>
+					<a href="https://github.com/NieneB/Webmapping_for_beginners/wiki/Interesting-links">My list</a> of interesting links, workshops, presentations and background information
 					<p>Feel free to contact me!</p>
 				</section>
 				<section>
