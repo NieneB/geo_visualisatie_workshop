@@ -57,7 +57,7 @@
             function ready(error, municipalities,earthquakes){
                 if (error) throw error;
 
-		gemeenten = topojson.feature(municipalities, municipalities.objects.municipalities);
+                let gemeenten = topojson.feature(municipalities, municipalities.objects.municipalities);
                 earthquakes.features.sort(function(a, b) { return b.properties.MAG - a.properties.MAG; });
 
                 let projection = d3.geoMercator()

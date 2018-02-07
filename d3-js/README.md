@@ -126,6 +126,43 @@ Once we have drawn the Dutch municipalities, we'd like to show the earthquakes a
 
 [04_visualisation.html](04_visualisation.html)
 
+Although, we have plotted the data, we cannot yet make much sense of it. Visualising the data allows us to group observations and reveal spatial patterns on the map.
+
+1. Categorize the data: tectonic or induced earthquakes (nominal)
+
+```javascript
+  .attr("class",function(d) {
+    return d.properties.TYPE == "ind" ? "quakes induced" : "quakes tectonic";
+  });
+```
+
+2. Show the categories using CSS
+
+```css
+  .induced {
+    fill: #EA9657;
+  }
+  .tectonic{
+    fill: #35495D;
+  }
+```
+
+3. Show the magnitude of the earthquakes (ratio)
+
+```javascript
+  .attr("d", path.pointRadius(function(d) {
+    return 2.5*Math.sqrt((Math.exp(parseFloat(d.properties.MAG))));
+  }))
+```
+
+*Note, the magnitude of earthquakes follows an exponential scale.*
+
+4. Larger bubbles to the back, smaller bubbles to the fore.
+
+```javascript
+  earthquakes.features.sort(function(a, b) { return b.properties.MAG - a.properties.MAG; });
+```
+
 ## 5. Add a base map for context
 
 [06_basemap.html](06_basemap.html)
