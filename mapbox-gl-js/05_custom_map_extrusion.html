@@ -15,12 +15,17 @@
       #map-container {
         height: 100%;
       }
+      #my-panel{
+        height: 300px;
+        width: 100%;
+        background-color: #ffffff;
+      }
     </style>
   </head>
   <body>
     <!--The div in which the map will be created-->
     <div id="map-container"></div>
-    
+    <div id="my-panel"></div>
     <!--load mapboxgl.js-->
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.js'></script>
     
@@ -36,8 +41,23 @@
         center: [ 5.9, 50.87]
     });
 
+    var panel = document.getElementById('my-panel');
+
     // Add zoom and rotation controls to the map.
     map.addControl(new mapboxgl.NavigationControl(), "top-left");
+
+    //Adding hover effect
+     map.on("mousemove", "admin", function(e) {
+        panel.innerHTML = e.features[0].properties.name;
+        map.setFilter("admin-hover", ["==", "name", e.features[0].properties.name]);
+    });
+
+    // Reset the state-fills-hover layer's filter when the mouse leaves the layer.
+    map.on("mouseleave", "admin", function() {
+        map.setFilter("admin-hover", ["==", "name", ""]);
+    });
+
+
     </script>
   </body>
 </html>

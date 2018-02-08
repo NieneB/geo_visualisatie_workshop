@@ -37,6 +37,18 @@
                 "fill-outline-color": "#ffffff"
             }
         },
+        {
+            "id": "admin-hover",
+            "type": "fill",
+            "source": "pdok",
+            "source-layer": "admin",
+            "maxzoom": 22,
+            "minzoom": 0,
+            "filter": ["==", "name", ""],
+            "paint": {
+                "fill-color" :"#F5CB5B"
+            }
+        },
          {
             "id": "buildup",
             "type": "fill",
