@@ -3,8 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Maps in D3js.</title>
-        <meta name="description" content="Maps in d3js.">
+        <title>Maps in D3js</title>
+        <meta name="description" content="Maps in d3js">
         <meta name="author" content="Edward Mac Gillavry">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
         <meta name="apple-mobile-web-app-capable" content="yes">
@@ -24,45 +24,26 @@
                 stroke-width: 0.4;
                 stroke: #fff;
             }
-            .quakes {
-                fill-opacity: 0.6;
-                stroke-width: 0.7;
-                stroke: #fff;
-            }
-            .induced {
-                fill: #EA9657;
-            }
-            .tectonic{
-                fill: #35495D;
-            }
         </style>
     </head>
     <body>
         <script src="https://d3js.org/d3.v4.min.js"></script>
-        <script src="https://d3js.org/topojson.v1.min.js"></script>
         <script>
             let width = 450,
                 height = 600,
                 svg = d3.select("body")
                     .append("svg")
                     .attr('width', width)
-                    .attr('height', height),
-                path,
-                gemeenten;
+                    .attr('height', height);
 
-            d3.queue()
-                .defer(d3.json, "../data/gemeenten_2017.topojson")
-                .defer(d3.json, "../data/aardbevingen_NL.geojson")
-                .await(ready);
+            d3.json("../data/gemeenten2017.geojson", function(error, gemeenten) {
+                if (error) throw error;
 
-            function ready(error, gemeenten_2017,earthquakes){
-           
-                gemeenten = topojson.feature(gemeenten_2017, gemeenten_2017.objects.gemeenten_2017);
-                earthquakes.features.sort(function(a, b) { return b.properties.MAG - a.properties.MAG; });
+                let projection = d3.geoMercator()
+                    .fitSize([width, height], gemeenten);
 
-                path = d3.geoPath()
-                    .projection(d3.geoMercator()
-                    .fitSize([width, height], gemeenten));
+                let path = d3.geoPath()
+                    .projection(projection);
 
                 svg.append("g")
                     .selectAll("path")
@@ -72,18 +53,8 @@
                     .attr("class","gemeente")
                     .attr("d", path)
                     .append("title")
-                    .text(function(d) { return d.properties.name});
-                svg.selectAll(".quakes")
-                    .data(earthquakes.features)
-                    .enter()
-                    .append("path")
-                    .attr("d", path.pointRadius(function(d) {
-                        return 2.5*Math.sqrt((Math.exp(parseFloat(d.properties.MAG))));
-                    })) 
-                    .attr("class",function(d) {
-                        return d.properties.TYPE == "ind" ? "quakes induced" : "quakes tectonic";
-                    });
-            }
+                    .text(function(d) { return d.properties.statnaam});
+            });
         </script>
     </body>
 </html>
