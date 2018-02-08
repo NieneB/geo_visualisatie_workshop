@@ -122,6 +122,7 @@ var map = new mapboxgl.Map({
         center: [ 4.8, 52.4]
     });
 ```
+
 ## 3. Adding a GeoJSON source
 
 [03_custom_map_geojson.html](03_custom_map_geojson.html) & [03_mystyle.json](03_mystyle.json)
@@ -176,4 +177,76 @@ If you do not want to depend on the Mapbox token we can use free providers or ma
     "glyphs": "http://fonts.openmaptiles.org/{fontstack}/{range}.pbf",
 
 Making a font `pbf` range ourself is also possible: https://github.com/mapbox/fontmachine
+
+Now we can add a label layer of type `symbol` :
+
+```json
+{
+            "id": "high_prior_labels",
+            "type": "symbol",
+            "source": "pdok",
+            "source-layer": "label",
+            "maxzoom": 20,
+            "minzoom": 5,
+            "filter": ["==", "z_index", 1000000],
+            "layout": {
+                "visibility": "visible",
+                "symbol-placement": "point",
+                "symbol-avoid-edges" : false,
+                "text-field":"{name}",
+                "text-font": ["Open Sans Regular"],
+                "text-size": 20,
+                "text-max-width": 5,
+                "text-anchor": "center",
+                "text-line-height": 1,
+                "text-justify": "center",
+                "text-padding": 20,
+                "text-allow-overlap": false
+            },
+            "paint":{
+                "text-opacity": 1,
+                "text-color": "#535353"
+            }
+        }
+```
+
+There are a lot of options to style your labels. Have a look at :https://www.mapbox.com/mapbox-gl-js/style-spec#layers-symbol 
+
+The most important is `"text-field" : "{name}"`. This takes the `name` attirubute to assign the label text.
+
+Then `"text-font":"["Open Sans Regular"]` gets the Open Sans font which is available at our glyphs link.
+
+`"text-size"` and `"text-color"` are also very important! 
+
+## 5. Extrusion
+
+A fill-extrusion is only possible on polygons! Therefore our points have to be pre-processed to make it into polygons. This is allready done for you with Qgis buffers. 
+
+The type of layer is `fill-extrusion`:
+
+```
+   {
+            "id": "aardbeving_extrusion",
+            "type": "fill-extrusion",
+            "source": "aardbeving_buffer",
+            "maxzoom": 22,
+            "minzoom": 11,
+            "paint":{
+                "fill-extrusion-height": [
+                        "interpolate",["linear"],["zoom"],
+                        11, ["*", 10, ["get", "DEPTH"]],
+                        15, [ "*", 100 , ["get", "DEPTH"]]
+                ],
+                "fill-extrusion-color":{
+                    "type": "categorical",
+                    "property": "TYPE",
+                    "stops":[
+                        ["ind", "#f3ec9c"],
+                        ["tec", "#F5CB5B"]
+                    ]
+                },
+                "fill-extrusion-opacity": 0.9
+            }
+        },
+```
 
