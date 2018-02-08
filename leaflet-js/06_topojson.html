@@ -71,33 +71,24 @@
         return new L.TopoJSON(data, options);
       };
 
-      //define how our point data will be visualized
-      var geojsonMarkerOptions = {
-        radius: 3,
-        fillColor: "#ff7800",
-        color: "#000",
-        weight: 1,
-        opacity: 1,
-        fillOpacity: 0.8
-      };
-      var myStyle = {
-          "color": "#ff7800",
-          "weight": 5,
-          "opacity": 0.65
-      };
 
       //create an empty geojson layer
+      //with a style and a popup on click
       var geojson = L.topoJson(null, {
         style: function(feature){
           return {
             color: "#000",
             opacity: 1,
             weight: 1,
-            fillColor: '#ff7800',
+            fillColor: '#35495d',
             fillOpacity: 0.8
           }
+        },
+        onEachFeature: function(feature, layer) {
+          layer.bindPopup('<p>'+feature.properties.name+'</p>')
         }
       }).addTo(map);
+      //fill: #317581;
 
       //define a function to get and parse geojson from URL
       async function getGeoData(url) {
@@ -108,7 +99,7 @@
       }
       
       //fetch the geojson and add it to our geojson layer
-      getGeoData('/data/gemeenten_2017.topojson').then(data => geojson.addData(data));
+      getGeoData('/data/gemeenten2017.topojson').then(data => geojson.addData(data));
 
     </script>
   </body>
