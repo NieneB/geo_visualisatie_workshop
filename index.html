@@ -186,10 +186,10 @@
   "type": "Feature",
   "geometry": {
     "type": "Point",
-    "coordinates": [125.6, 10.1]
+    "coordinates": [5.2394137,52.0819662]
   },
   "properties": {
-    "name": "Dinagat Islands"
+    "name": "Hotel Theater Figi"
   }
 }</code></pre>
 					<aside class="notes">standardize the way we describe locations on a map
@@ -251,7 +251,7 @@
 					<img src="presentation/img/web_map_building_blocks.png">
 				</section> -->
 				<section>
-					<h1>Static vs Dynamic</h1>
+					<h1>Maker-driven vs User-driven view</h1>
 					<h2>Interactive</h2>
 					<a href="https://books.google.nl/books?hl=en&lr=&id=aO5OYTP8LyIC&oi=fnd&pg=PP1&dq=kraak+web+cartography&ots=3Qi3znZ6fq&sig=x_9oCTlAljMcP8rgAGMPNa7MKU0#v=onepage&q=kraak%20web%20cartography&f=false">[1]</a>
 					<aside class= "notes"><p>GIS web map</p>
@@ -270,22 +270,21 @@
 					<p><a href="https://developer.here.com/develop/javascript-api">HERE Maps</a></p>
 				</section> -->
 				<section>
-					<h1>Static: D3.js</h1>
+					<h1>Maker-driven: D3.js</h1>
 					<p>Interactive</p>
 					<p>Graphic</p>
 					<p>More about coordinate systems and projections</p>
-					<iframe src="d3-js/04_visualisation.html" style="width:100%; height:300px;"> </iframe> 
-
+					<iframe src="d3-js/04_visualisation.html" style="width:100%; height:300px;"> </iframe>
 				</section>
 				<section>
-					<h1>Interactive: Leaflet.js</h1>
+					<h1>User-driven: Leaflet.js</h1>
 					<p>Tiled Web Map</p>
 					<p>Static Background. Raster based</p>
 					<p>Interactive layers</p>
 					<iframe src="leaflet-js/04_geojson.html" style="width:100%; height:400px;"> </iframe> 
 				</section>
 				<section>
-					<h1>Interactive: MapboxGL.js</h1>
+					<h1>User-driven: MapboxGL.js</h1>
 					<p>Customized Background map </p>
 					<p>Interactive Data</p>
 					<p>WebGL rendering!</p>
@@ -296,24 +295,40 @@
 			<section data-background="presentation/img/Screenshot_background2.png">
 				<section>
 					<h1>D3.js</h1>
+					<p>Maker-driven Web Maps</p>
+                    <iframe src="d3-js/04_visualisation.html" style="width:100%; height:300px;"> </iframe>
+                    <p>Scale-dependent styling is a hassle</p>
 				</section>
 				<section>
-					<h1>bla</h1>
+					<h4>From real-world to screen coordinates?</h4>
+					<p>The solution?</p>
+					<h1 class="fragment grow"><a href="https://github.com/d3/d3-geo">d3.geo</a></h1>
 				</section>
 				<section>
-						<h1>D3 is NOT</h1>
-						<p>a slippy map creator</p>
-						<p> Not based on tiles!!</p>
-						<h2 class="fragment fade-in">Mostly used for:</h2>
-						<p class="fragment fade-in">Charts (pie, line), Tables, Maps, Networks, animation & interactivity</p>
-					</section>
+				    <h4>Geo data = big data?</h4>
+				    <p>The solution?</p>
+					<h1 class="fragment grow"><a href="https://github.com/topojson">TopoJSON</a></h1>
+				</section>
+				<section>
+				    <h4>More geo data = bigger data?</h4>
+				    <p>The solution</p>
+					<h1 class="fragment grow"><a href="https://github.com/d3/d3-queue">d3.queue</a></h1>
+				</section>
+				<section>
+					<h1>Let's code!</h1>
+					<p><a href="https://bl.ocks.org/emacgillavry/e3ccf5439ee389266b3553081e2a8e2a">Basic GeoJSON map</a></p>
+					<p><a href="https://bl.ocks.org/emacgillavry/a9e89b173f6a6d3286f8d0a6f2b911ee">From GeoJSON to TopoJSON</a></p>
+					<p><a href="">Add multiple sources</a></p>
+					<p><a href="">Visualise the data</a></p>
+					<p><a href="">Add a base map</a></p>
+				</section>
 			</section>
 			<!-- Leaflet.js -->
 			<section data-background="presentation/img/Screenshot6.png">
 				<section>
 					<h1>Leaflet.js</h1>
 					<p>Interactive Web Maps</p>
-					<iframe src="leaflet-js/04_geojson.html" style="width:100%; height:400px;"> </iframe> 
+					<iframe src="leaflet-js/04_geojson.html" style="width:100%; height:400px;"> </iframe>
 				</section>
 				<!-- <section>
 					<h1>a little History</h1>
@@ -329,7 +344,7 @@
 <!-- 					<p>in 2004 Endoxon found a way for quick online mapping! <a href="http://map.search.ch">map.search.ch</a></p>
 					<p>2005 Google Maps took over!</p> -->
 					<p> The solution?</p>
-					<h1 class="fragment grow">Tiles! </h1>
+					<h1 class="fragment grow">Tiles!</h1>
 				</section>
 				<section>
 					<h1>Tiles</h1>
@@ -517,7 +532,7 @@
 				</section>
 				<section>
 					<h1>Let's code!</h1>
-					<p><a href="https://github.com/NieneB/geo_visualisatie_workshop/blob/master/mapbox-gl-js/01_basemap.html"> Simple Mapbox GL.js example </a></p>
+					<p><a href="https://github.com/NieneB/geo_visualisatie_workshop/blob/master/mapbox-gl-js/01_basemap.html">Simple Mapbox GL.js example </a></p>
 					<p>WGS84 data only!!</p>
 					<p><a href="https://github.com/NieneB/geo_visualisatie_workshop/blob/master/mapbox-gl-js/02_mystyle.json">Using PDOK vector tiles</a></p>
 
