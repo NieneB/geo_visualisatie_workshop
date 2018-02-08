@@ -167,6 +167,49 @@ async function getGeoData(url) {
 getGeoData('/data/aardbevingen_NL.geojson').then(data => geojson.addData(data));
 ```
 
+We just styled all the features in the same way. We can also use data-driven styling, for example differentiating between types of earthquakes and scaling the circles to show the magnitude of the earthquakes. To do this, we'll need to modify the creation of the layer, and add a few helper functions.
+
+
+1. first define how to color the points based on the earthquake type
+
+```javascript
+//define color of points based on earthquake type
+function colorPoints(type){
+return type === 'tec' ? '#35495D' :
+  type === 'ind' ? '#EA9657' :
+  '#317581'
+}
+```
+
+
+2. now create a style options object that is data-driven
+
+```javascript
+//define how our point data will be visualized
+function styleEarthquakePoints(feature){
+  return {
+    radius: 2.5*Math.sqrt((Math.exp(parseFloat(feature.properties.MAG)))),
+    fillColor: colorPoints(feature.properties.TYPE),
+    color: '#fff',
+    weight: 1,
+    opacity: 0.8,
+    fillOpacity: 0.6
+  };
+}
+```
+
+3. finally, modify the circleMarker to use our styling function
+
+```javascript
+//create an empty geojson layer that already knows how to style the data
+var geojson = L.geoJson(null,{
+pointToLayer: function (feature, latlng) {
+  return L.circleMarker(latlng, styleEarthquakePoints(feature));
+}
+}).addTo(map);
+```
+
+
 We can also show this dataset on our map in RD. GeoJSON is _always_ in latitude/longitude, never in a projected coordinate system. Leaflet reprojects features from latitude/longitude to the coordinate reference system of the map. Since we have told Leaflet to use RD, we don't need to make any other changes to our code as you can see in [05_geojson_RD.html](05_geojson_RD.html)
 
 ## 5. Add municipalities of the Netherlands as TopoJSON
@@ -174,6 +217,12 @@ We can also show this dataset on our map in RD. GeoJSON is _always_ in latitude/
 [06_topojson.html](06_topojson.html)
 
 GeoJSON can be used for points, lines and polygons. So we can add any other dataset if we want. But GeoJSON is quite 'verbose', so file sizes increase quickly. Especially on the web, this causes performance problems. Luckily, someone (Mike Bostock, the creator of D3.js) developed an extension to GeoJSON which can reduce filesize greatly. It works by storing the topology of the data, so that duplicate points and lines are only stored once. If we take, for example, the municipalities of the Netherlands, this means that we can cut down the size a lot since all the shared boundaries can be de-duplicated! If we add a bit of simplification, we can make spectacular gains: the GeoJSON of the Dutch municipalities is 38MB; as topojson it's initially 25MB, and when we simplify it's 488 KB (!) and still of an acceptable precision for most (web) maps.
+
+To be able to use this, we need to include the topojson library on our webpage:
+
+```html
+<script src="https://unpkg.com/topojson@3.0.2/dist/topojson.min.js"></script>
+```
 
 Leaflet can't read TopoJSON, so once the much smaller file has been transferred over the network we need to convert it  back to GeoJSON to add it to the map. What we need to do:
      
@@ -225,8 +274,7 @@ style: function(feature){ //define how to style the features
 }).addTo(map);
 ```
 
-3. fetch the geojson and add it to our geojson layer
-
+3. fetch the topojson and add it to our geojson layer
 
 ```javascript
 getGeoData('/data/gemeenten_2017.topojson').then(data => geojson.addData(data));
@@ -236,6 +284,25 @@ see the result in [06_topojson.html](06_topojson.html)
 
 ## 6. Adding interactivity and more
 
-Once you have data on your map, you can add all kinds of interactivity on events like clicks and mouseovers. You can also control the zoom and location of the map. For information, see the excellent [tutorials](http://leafletjs.com/examples.html) on Leaflet's official website.
+Once you have data on your map, you can add all kinds of interactivity on events like clicks and mouseovers. Here is one example: a popup that shows the name of the municipality on click. Modify the code that creates the geojson layer:
 
+```javascript
+//create an empty geojson layer
+//with a style and a popup on click
+var geojson = L.topoJson(null, {
+style: function(feature){
+  return {
+    color: "#000",
+    opacity: 1,
+    weight: 1,
+    fillColor: '#35495d',
+    fillOpacity: 0.8
+  }
+},
+onEachFeature: function(feature, layer) {
+  layer.bindPopup('<p>'+feature.properties.name+'</p>')
+}
+}).addTo(map);
+```
 
+You can also control the zoom and location of the map. For information, see the [tutorials](http://leafletjs.com/examples.html) on Leaflet's official website.
