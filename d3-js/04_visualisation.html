@@ -36,11 +36,22 @@
             .tectonic{
                 fill: #35495D;
             }
+            .slider-container {
+              width: 600px;
+              display: flex;
+              justify-content: space-between
+            }
         </style>
     </head>
     <body>
         <script src="https://d3js.org/d3.v4.min.js"></script>
         <script src="https://d3js.org/topojson.v1.min.js"></script>
+        <div class="slider-container">
+          <label for="nVel">
+            Minimum magnitude <span style="width:50px" id="goal-value">0</span>
+          </label>
+            <input style="width: 200px;" type="range" min="0" max="6" id="goal"  step='0.1'>
+        </div>
         <script>
             let width = 450,
                 height = 600,
@@ -86,6 +97,14 @@
                         return d.properties.TYPE == "ind" ? "quakes induced" : "quakes tectonic";
                     });
             }
+            d3.select("#goal").on("input", function() {
+              goal = +this.value;
+              d3.select('#goal-value').text(goal);
+
+              svg.selectAll("svg path.quakes").each(function(d) { 
+                this.style.opacity = d.properties.MAG > goal ? 1 : 0; 
+                });
+            });           
         </script>
     </body>
 </html>
